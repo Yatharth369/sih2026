@@ -604,7 +604,7 @@
     .modal-checkbox input[type="checkbox"]:checked::after {
       content: '✓'; color: #06060e; font-size: .85rem; font-weight: 800;
     }
-    .modal-checkbox label {
+    .modal-checkbox .check-label {
       color: var(--text); font-size: .88rem; cursor: pointer;
       line-height: 1.5; user-select: none;
     }
@@ -1079,10 +1079,10 @@
     <div class="modal-icon">📋</div>
     <h3>Have You Read the Guidelines?</h3>
     <p>Before registering, please make sure you have completely read and understood all the hackathon rules and guidelines above.</p>
-    <div class="modal-checkbox" id="confirmBox" onclick="toggleConfirm()">
-      <input type="checkbox" id="confirmCheck" />
-      <label for="confirmCheck">I confirm that I have completely read and understood all the guidelines, rules, and requirements for Internal SIH 2026.</label>
-    </div>
+    <label class="modal-checkbox" id="confirmBox">
+      <input type="checkbox" id="confirmCheck" onchange="toggleConfirm()" />
+      <span class="check-label">I confirm that I have completely read and understood all the guidelines, rules, and requirements for Internal SIH 2026.</span>
+    </label>
     <a id="registerLink" class="modal-btn-register" onclick="handleRegister(event)">
       🔒 Check the box above to proceed
     </a>
@@ -1322,7 +1322,6 @@
   }
 
   function toggleConfirm() {
-    confirmCheck.checked = !confirmCheck.checked;
     confirmBox.classList.toggle('checked', confirmCheck.checked);
     if (confirmCheck.checked) {
       registerLink.classList.add('active');
