@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Internal SIH 2026 | UEC Campus Catalyst</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' data:; font-src https://fonts.gstatic.com; connect-src 'self'; form-action 'none';" />
+  <style>
+    /* ───────── ANNOUNCEMENT BAR ───────── */
+    .announce-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1002;
+      background: linear-gradient(90deg, #25D366, #128C7E);
+      padding: .5rem 2rem;
+      display: flex; align-items: center; justify-content: center; gap: .6rem;
+      font-size: .82rem; font-weight: 600; color: #fff;
+      text-align: center;
+      box-shadow: 0 2px 15px rgba(37,211,102,.3);
+    }
+    .announce-bar a {
+      color: #fff; text-decoration: underline; text-underline-offset: 2px;
+      font-weight: 700;
+    }
+    .announce-bar a:hover { color: #e2ffe8; text-shadow: none; }
+    .announce-bar .announce-close {
+      position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);
+      background: none; border: none; color: #fff; font-size: 1.1rem;
+      cursor: pointer; opacity: .7; transition: opacity .2s;
+      line-height: 1;
+    }
+    .announce-bar .announce-close:hover { opacity: 1; }
+    body.has-announce .navbar { top: 34px; }
+    body.has-announce .progress-bar { top: 34px; }
+    body.has-announce .hero { padding-top: 9rem; }
+    @media (max-width: 600px) {
+      .announce-bar { font-size: .74rem; padding: .45rem 2.5rem .45rem 1rem; }
+    }
+    /* ───────── RESET & BASE ───────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg:        #06060e;
+      --bg-card:   #0d0d1a;
+      --bg-card2:  #111126;
+      --neon:      #00ffaa;
+      --neon2:     #00d4ff;
+      --purple:    #a855f7;
+      --pink:      #f472b6;
+      --orange:    #fb923c;
+      --red:       #ef4444;
+      --yellow:    #facc15;
+      --text:      #e2e8f0;
+      --text-dim:  #94a3b8;
+      --border:    #1e293b;
+      --glow:      0 0 20px rgba(0,255,170,.15);
+      --glow-strong: 0 0 40px rgba(0,255,170,.25), 0 0 80px rgba(0,255,170,.1);
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', 'Space Grotesk', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: var(--neon); text-decoration: none; transition: .2s; }
+    a:hover { color: var(--neon2); text-shadow: 0 0 8px var(--neon2); }
+
+    /* ───────── ANIMATED BG GRID ───────── */
+    .bg-grid {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(0,255,170,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,170,.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridScroll 20s linear infinite;
+    }
+    @keyframes gridScroll {
+      0%   { background-position: 0 0; }
+      100% { background-position: 60px 60px; }
+    }
+
+    /* floating particles */
+    .particles {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      width: 3px; height: 3px;
+      background: var(--neon);
+      border-radius: 50%;
+      opacity: 0;
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+      10%  { opacity: .6; }
+      90%  { opacity: .6; }
+      100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+    }
+
+    /* ───────── NAVBAR ───────── */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .8rem 2rem;
+      background: rgba(6,6,14,.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow .3s;
+    }
+    .navbar.scrolled { box-shadow: 0 4px 30px rgba(0,255,170,.08); }
+    .nav-brand {
+      font-family: 'Fira Code', monospace;
+      font-weight: 700; font-size: 1.15rem;
+      color: var(--neon);
+      text-shadow: 0 0 10px rgba(0,255,170,.4);
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .nav-logo {
+      width: 34px; height: 34px; border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 10px rgba(0,255,170,.3);
+    }
+    .nav-brand .blink { animation: blink 1s step-end infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .nav-links { display: flex; gap: 1.6rem; list-style: none; }
+    .nav-links a {
+      color: var(--text-dim); font-size: .88rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .06em;
+      position: relative; padding-bottom: 2px;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 2px; background: var(--neon);
+      transition: width .3s; box-shadow: 0 0 6px var(--neon);
+    }
+    .nav-links a:hover { color: var(--neon); text-shadow: none; }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      padding: .55rem 1.4rem; border-radius: 6px;
+      background: linear-gradient(135deg, var(--neon), var(--neon2));
+      color: #06060e !important; font-weight: 700; font-size: .88rem;
+      text-transform: uppercase; letter-spacing: .06em;
+      box-shadow: 0 0 20px rgba(0,255,170,.25);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .nav-cta:hover {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 0 30px rgba(0,255,170,.4);
+      color: #06060e !important; text-shadow: none;
+    }
+
+    /* hamburger */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+    .hamburger span {
+      display: block; width: 26px; height: 2px;
+      background: var(--neon); border-radius: 2px; transition: .3s;
+    }
+
+    @media (max-width: 860px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
+        flex-direction: column; gap: 0;
+        background: rgba(6,6,14,.97); backdrop-filter: blur(20px);
+        padding: 5rem 2rem 2rem; border-left: 1px solid var(--border);
+        transition: right .35s ease;
+      }
+      .nav-links.open { right: 0; }
+      .nav-links a { font-size: 1rem; padding: .8rem 0; border-bottom: 1px solid var(--border); }
+      .nav-links a::after { display: none; }
+    }
+
+    /* ───────── HERO ───────── */
+    .hero {
+      position: relative; z-index: 1;
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 7rem 2rem 4rem;
+    }
+    .hero-logo {
+      width: clamp(100px, 18vw, 160px);
+      height: clamp(100px, 18vw, 160px);
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 30px rgba(0,255,170,.2), 0 0 60px rgba(0,212,255,.1);
+      animation: logoGlow 4s ease-in-out infinite;
+      border: 2px solid rgba(0,255,170,.2);
+    }
+    @keyframes logoGlow {
+      0%, 100% { box-shadow: 0 0 30px rgba(0,255,170,.2), 0 0 60px rgba(0,212,255,.1); }
+      50%      { box-shadow: 0 0 40px rgba(0,255,170,.35), 0 0 80px rgba(0,212,255,.2); }
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .4rem 1rem; border-radius: 100px;
+      border: 1px solid rgba(0,255,170,.3);
+      background: rgba(0,255,170,.06);
+      font-family: 'Fira Code', monospace; font-size: .78rem;
+      color: var(--neon); margin-bottom: 1.8rem;
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 10px rgba(0,255,170,.1); }
+      50%      { box-shadow: 0 0 25px rgba(0,255,170,.25); }
+    }
+    .hero-badge .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--neon); animation: blink 1.2s ease-in-out infinite;
+    }
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.4rem, 6vw, 4.6rem);
+      font-weight: 900; line-height: 1.1;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #fff 0%, var(--neon) 50%, var(--neon2) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero h1 .year {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--neon), var(--neon2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero .subtitle {
+      font-size: clamp(1rem, 2.2vw, 1.35rem);
+      color: var(--text-dim); max-width: 650px;
+      margin-bottom: 2.5rem; line-height: 1.6;
+    }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .85rem 2rem; border-radius: 8px;
+      font-weight: 700; font-size: .95rem;
+      text-transform: uppercase; letter-spacing: .04em;
+      transition: all .25s; cursor: pointer; border: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--neon), var(--neon2));
+      color: #06060e;
+      box-shadow: 0 0 30px rgba(0,255,170,.3), inset 0 1px 0 rgba(255,255,255,.2);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 0 50px rgba(0,255,170,.45);
+      color: #06060e; text-shadow: none;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--neon);
+      color: var(--neon);
+    }
+    .btn-outline:hover {
+      background: rgba(0,255,170,.08);
+      transform: translateY(-3px);
+      box-shadow: 0 0 25px rgba(0,255,170,.2);
+      color: var(--neon); text-shadow: none;
+    }
+
+    /* terminal hero decoration */
+    .hero-terminal {
+      margin-top: 3rem; width: min(90vw, 560px); text-align: left;
+      background: #0d0d1a; border: 1px solid var(--border);
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    }
+    .term-bar {
+      display: flex; align-items: center; gap: 7px;
+      padding: .6rem 1rem; background: #151528; border-bottom: 1px solid var(--border);
+    }
+    .term-dot { width: 11px; height: 11px; border-radius: 50%; }
+    .term-dot.r { background: #ef4444; }
+    .term-dot.y { background: #facc15; }
+    .term-dot.g { background: #22c55e; }
+    .term-bar span {
+      margin-left: auto; font-family: 'Fira Code', monospace;
+      font-size: .72rem; color: var(--text-dim);
+    }
+    .term-body {
+      padding: 1.2rem 1.4rem;
+      font-family: 'Fira Code', monospace; font-size: .82rem;
+      color: var(--text-dim); line-height: 1.9;
+    }
+    .term-body .prompt { color: var(--neon); }
+    .term-body .cmd { color: #fff; }
+    .term-body .out { color: var(--neon2); }
+    .term-body .typing {
+      border-right: 2px solid var(--neon);
+      animation: blink .8s step-end infinite;
+      padding-right: 2px;
+    }
+
+    /* ───────── SCROLL INDICATOR ───────── */
+    .scroll-indicator {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .4rem;
+      color: var(--text-dim); font-size: .75rem; letter-spacing: .1em;
+      text-transform: uppercase; animation: bounce 2s infinite;
+    }
+    .scroll-indicator .arrow { font-size: 1.2rem; }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ───────── SECTIONS ───────── */
+    .content { position: relative; z-index: 1; }
+    section {
+      max-width: 900px; margin: 0 auto;
+      padding: 4rem 2rem 2rem;
+    }
+    .section-header {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 2rem; position: relative;
+    }
+    .section-number {
+      font-family: 'Fira Code', monospace; font-size: .8rem;
+      color: var(--bg); background: var(--neon);
+      padding: .2rem .6rem; border-radius: 4px; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .section-header h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.4rem, 3vw, 1.8rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #fff, var(--neon));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-header::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+
+    /* card wrapper */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 2rem;
+      margin-bottom: 1.5rem;
+      transition: border-color .3s, box-shadow .3s, transform .3s;
+      position: relative; overflow: hidden;
+    }
+    .card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--neon), transparent);
+      opacity: 0; transition: opacity .3s;
+    }
+    .card:hover {
+      border-color: rgba(0,255,170,.25);
+      box-shadow: var(--glow);
+      transform: translateY(-2px);
+    }
+    .card:hover::before { opacity: 1; }
+
+    /* lists inside cards */
+    .card ul, .card ol {
+      list-style: none; padding: 0;
+    }
+    .card li {
+      position: relative; padding: .45rem 0 .45rem 1.6rem;
+      color: var(--text); font-size: .92rem;
+    }
+    .card li::before {
+      content: '▹'; position: absolute; left: 0; top: .45rem;
+      color: var(--neon); font-size: 1rem; font-weight: 700;
+    }
+    .card li.sub {
+      padding-left: 3rem; color: var(--text-dim);
+    }
+    .card li.sub::before {
+      left: 1.4rem; content: '◦'; color: var(--neon2);
+    }
+
+    /* evaluation grid */
+    .eval-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem; margin-top: 1rem;
+    }
+    .eval-item {
+      background: var(--bg-card2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.2rem; text-align: center;
+      transition: all .3s;
+    }
+    .eval-item:hover {
+      border-color: var(--neon);
+      box-shadow: 0 0 15px rgba(0,255,170,.1);
+      transform: translateY(-2px);
+    }
+    .eval-pct {
+      font-family: 'Fira Code', monospace; font-size: 1.6rem;
+      font-weight: 700; color: var(--neon);
+      text-shadow: 0 0 10px rgba(0,255,170,.3);
+    }
+    .eval-label { font-size: .82rem; color: var(--text-dim); margin-top: .3rem; }
+
+    /* prototype tags */
+    .proto-grid {
+      display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1rem;
+    }
+    .proto-tag {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .5rem 1rem; border-radius: 100px;
+      background: var(--bg-card2); border: 1px solid var(--border);
+      font-size: .85rem; color: var(--text);
+      transition: all .3s;
+    }
+    .proto-tag:hover {
+      border-color: var(--neon); background: rgba(0,255,170,.05);
+      transform: translateY(-2px); box-shadow: 0 0 12px rgba(0,255,170,.1);
+    }
+    .proto-tag .emoji { font-size: 1.1rem; }
+
+    /* disqualification list */
+    .dq-list li::before {
+      content: '✕'; color: var(--red); font-weight: 700;
+    }
+
+    /* flow diagram */
+    .flow {
+      display: flex; align-items: center; justify-content: center;
+      gap: .2rem; flex-wrap: wrap; margin: 1.5rem 0;
+      font-family: 'Fira Code', monospace; font-size: .78rem;
+    }
+    .flow-step {
+      padding: .5rem 1rem; border-radius: 6px;
+      background: var(--bg-card2); border: 1px solid var(--border);
+      color: var(--text); white-space: nowrap;
+      transition: all .3s;
+    }
+    .flow-step:hover {
+      border-color: var(--neon); box-shadow: 0 0 12px rgba(0,255,170,.15);
+    }
+    .flow-arrow { color: var(--neon); font-size: 1rem; margin: 0 .15rem; }
+
+    /* ───────── IMPORTANT BANNER ───────── */
+    .important-banner {
+      max-width: 900px; margin: 2rem auto 0; padding: 0 2rem;
+    }
+    .banner-inner {
+      background: linear-gradient(135deg, rgba(251,146,60,.08), rgba(239,68,68,.08));
+      border: 1px solid rgba(251,146,60,.3);
+      border-radius: 12px; padding: 2rem;
+      position: relative; overflow: hidden;
+    }
+    .banner-inner::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--orange), var(--red), transparent);
+    }
+    .banner-inner h3 {
+      color: var(--orange); font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem; margin-bottom: 1rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .banner-inner p { color: var(--text-dim); font-size: .92rem; }
+    .banner-inner p strong { color: var(--text); }
+
+    /* ───────── CTA SECTION ───────── */
+    .cta-section {
+      position: relative; z-index: 1;
+      text-align: center; padding: 5rem 2rem 6rem;
+    }
+    .cta-section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 900; margin-bottom: .8rem;
+      background: linear-gradient(135deg, #fff, var(--neon));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .cta-section p {
+      color: var(--text-dim); max-width: 500px;
+      margin: 0 auto 2.5rem; font-size: 1.05rem;
+    }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(37,211,102,.2);
+    }
+    .btn-whatsapp:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 0 40px rgba(37,211,102,.35);
+      color: #fff; text-shadow: none;
+    }
+
+    .btn-instagram {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(225,48,108,.2);
+    }
+    .btn-instagram:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 0 40px rgba(225,48,108,.35);
+      color: #fff; text-shadow: none;
+    }
+
+    /* ───────── CONFIRMATION MODAL ───────── */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(6,6,14,.85);
+      backdrop-filter: blur(10px);
+      display: none; align-items: center; justify-content: center;
+      padding: 1.5rem;
+      animation: fadeIn .25s ease;
+    }
+    .modal-overlay.show { display: flex; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      max-width: 480px; width: 100%;
+      position: relative;
+      box-shadow: 0 25px 80px rgba(0,0,0,.6), 0 0 40px rgba(0,255,170,.08);
+      animation: slideUp .3s ease;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%      { transform: translateX(-6px); }
+      40%      { transform: translateX(6px); }
+      60%      { transform: translateX(-4px); }
+      80%      { transform: translateX(4px); }
+    }
+    .modal-box::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; border-radius: 16px 16px 0 0;
+      background: linear-gradient(90deg, var(--neon), var(--neon2), var(--purple));
+    }
+    .modal-close {
+      position: absolute; top: 1rem; right: 1.2rem;
+      background: none; border: none; color: var(--text-dim);
+      font-size: 1.4rem; cursor: pointer; transition: color .2s;
+      line-height: 1;
+    }
+    .modal-close:hover { color: var(--neon); }
+    .modal-icon {
+      font-size: 2.5rem; text-align: center; margin-bottom: 1rem;
+    }
+    .modal-box h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem; font-weight: 800;
+      text-align: center; margin-bottom: .5rem;
+      background: linear-gradient(135deg, #fff, var(--neon));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .modal-box p {
+      color: var(--text-dim); text-align: center;
+      font-size: .9rem; line-height: 1.6; margin-bottom: 1.5rem;
+    }
+    .modal-checkbox {
+      display: flex; align-items: flex-start; gap: .7rem;
+      padding: 1rem; border-radius: 10px;
+      background: var(--bg-card2); border: 1px solid var(--border);
+      cursor: pointer; transition: border-color .3s, background .3s;
+      margin-bottom: 1.5rem;
+    }
+    .modal-checkbox:hover {
+      border-color: rgba(0,255,170,.3);
+      background: rgba(0,255,170,.04);
+    }
+    .modal-checkbox.checked {
+      border-color: var(--neon);
+      background: rgba(0,255,170,.06);
+    }
+    .modal-checkbox input[type="checkbox"] {
+      appearance: none; -webkit-appearance: none;
+      width: 22px; height: 22px; min-width: 22px;
+      border: 2px solid var(--border); border-radius: 5px;
+      background: var(--bg); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s; margin-top: 1px;
+    }
+    .modal-checkbox input[type="checkbox"]:checked {
+      background: var(--neon); border-color: var(--neon);
+    }
+    .modal-checkbox input[type="checkbox"]:checked::after {
+      content: '✓'; color: #06060e; font-size: .85rem; font-weight: 800;
+    }
+    .modal-checkbox label {
+      color: var(--text); font-size: .88rem; cursor: pointer;
+      line-height: 1.5; user-select: none;
+    }
+    .modal-btn-register {
+      display: block; width: 100%; padding: .9rem;
+      border: none; border-radius: 10px;
+      font-weight: 700; font-size: 1rem;
+      text-transform: uppercase; letter-spacing: .05em;
+      text-align: center; cursor: not-allowed;
+      background: var(--bg-card2); color: var(--text-dim);
+      border: 1px solid var(--border);
+      transition: all .35s;
+      text-decoration: none;
+    }
+    .modal-btn-register.active {
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--neon), var(--neon2));
+      color: #06060e; border-color: transparent;
+      box-shadow: 0 0 30px rgba(0,255,170,.3);
+    }
+    .modal-btn-register.active:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 0 50px rgba(0,255,170,.45);
+    }
+
+    /* ───────── FOOTER ───────── */
+    footer {
+      position: relative; z-index: 1;
+      text-align: center; padding: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: .82rem; color: var(--text-dim);
+      font-family: 'Fira Code', monospace;
+    }
+    footer .heart { color: var(--red); }
+    footer a { color: var(--neon); }
+
+    /* ───────── REVEAL ANIMATIONS ───────── */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible {
+      opacity: 1; transform: translateY(0);
+    }
+
+    /* ───────── SCROLLBAR ───────── */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(var(--neon), var(--neon2));
+      border-radius: 4px;
+    }
+
+    /* ───────── PROGRESS BAR ───────── */
+    .progress-bar {
+      position: fixed; top: 0; left: 0; height: 3px; z-index: 1001;
+      background: linear-gradient(90deg, var(--neon), var(--neon2), var(--purple));
+      width: 0%; transition: width .1s;
+      box-shadow: 0 0 10px var(--neon);
+    }
+  </style>
+</head>
+<body class="has-announce">
+
+<!-- Announcement Bar -->
+<div class="announce-bar" id="announceBar">
+  📢 Join our WhatsApp Group &amp; follow us on Instagram for all SIH 2026 updates →
+  <a href="https://chat.whatsapp.com/JWg14I2O3pTCVy9jIJcwgS?s=sh&p=a&ilr=0" target="_blank">Join Group</a>
+  <a href="https://www.instagram.com/uecxsih?utm_source=qr&igsh=ejl1YTA0d3Bkc3Rx" target="_blank">Instagram</a>
+  <button class="announce-close" onclick="closeAnnounce()" aria-label="Close">&times;</button>
+</div>
+
+<!-- Progress Bar -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- Background Effects -->
+<div class="bg-grid"></div>
+<div class="particles" id="particles"></div>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="nav-brand">
+    <img src="logo.png" alt="UEC x SIH" class="nav-logo" />
+    <span>SIH<span style="color:var(--neon2)">2026</span></span>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#team" onclick="closeNav()">Team</a></li>
+    <li><a href="#registration" onclick="closeNav()">Register</a></li>
+    <li><a href="#problem" onclick="closeNav()">Problem</a></li>
+    <li><a href="#evaluation" onclick="closeNav()">Evaluation</a></li>
+    <li><a href="#rules" onclick="closeNav()">Rules</a></li>
+    <li><a href="#" class="nav-cta" onclick="openModal(event); closeNav()">Register Now 🚀</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ════════ HERO ════════ -->
+<section class="hero" id="hero">
+  <img src="logo.png" alt="UEC x SIH 2026" class="hero-logo" />
+  <div class="hero-badge">
+    <span class="dot"></span> Registration is LIVE
+  </div>
+  <h1>Internal SIH <span class="year">2026</span></h1>
+  <p class="subtitle">
+    College-level selection round for Smart India Hackathon 2026.
+    Innovate. Build. Compete. 🇮🇳
+  </p>
+  <p style="font-family:'Fira Code',monospace;font-size:.85rem;color:var(--neon);letter-spacing:.15em;margin-bottom:2rem;text-transform:uppercase;">
+    Ideas &nbsp;•&nbsp; Innovation &nbsp;•&nbsp; Impact
+  </p>
+  <div class="hero-buttons">
+    <a href="#" onclick="openModal(event)" class="btn btn-primary">
+      Register Now →
+    </a>
+    <a href="#guidelines" class="btn btn-outline">Read Guidelines ↓</a>
+  </div>
+
+  <div class="hero-terminal">
+    <div class="term-bar">
+      <span class="term-dot r"></span>
+      <span class="term-dot y"></span>
+      <span class="term-dot g"></span>
+      <span>sih2026@campus ~ </span>
+    </div>
+    <div class="term-body">
+      <div><span class="prompt">$</span> <span class="cmd">sih --status</span></div>
+      <div><span class="out">✔ Registration: LIVE 🔥</span></div>
+      <div><span class="out">✔ Team Size: 4-6 members</span></div>
+      <div><span class="out">✔ Mode: Internal Hackathon → SIH 2026</span></div>
+      <div><span class="prompt">$</span> <span class="cmd typing">register --now</span></div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <span class="arrow">↓</span>
+  </div>
+</section>
+
+<!-- ════════ CONTENT SECTIONS ════════ -->
+<div class="content" id="guidelines">
+
+  <!-- 1. TEAM FORMATION -->
+  <section id="team">
+    <div class="section-header reveal">
+      <span class="section-number">01</span>
+      <h2>👥 Team Formation</h2>
+    </div>
+    <div class="card reveal">
+      <ul>
+        <li>Each team must have <strong>4–6 members</strong>.</li>
+        <li>Each team must include at least <strong>one female participant</strong>.</li>
+        <li>Each participant can be a member of <strong>only one team</strong>.</li>
+        <li>Each team must have one designated <strong>Team Leader</strong>.</li>
+        <li>The Team Leader will be the <strong>primary point of contact</strong> with the organizing committee.</li>
+        <li>All members must belong to the <strong>eligible college/institution</strong> as per the applicable eligibility requirements.</li>
+        <li>Members may be from <strong>different branches/years</strong>, subject to eligibility.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 2. REGISTRATION -->
+  <section id="registration">
+    <div class="section-header reveal">
+      <span class="section-number">02</span>
+      <h2>📝 Registration</h2>
+    </div>
+    <div class="card reveal">
+      <ul>
+        <li>Only the <strong>Team Leader</strong> should submit the registration form.</li>
+        <li>Submit the form <strong>only once</strong> per team.</li>
+        <li>Enter the correct name, enrollment number, branch, year, gender, email ID, and mobile number of every team member.</li>
+        <li>All details must match <strong>official college records</strong>.</li>
+        <li>Incorrect, incomplete, duplicate, or misleading information may lead to <strong>rejection or disqualification</strong>.</li>
+        <li>If any correction is required, <strong>contact the coordinator</strong> instead of submitting another form.</li>
+        <li>Registration will remain <strong>provisional</strong> until verified by the organizing committee.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3. PROBLEM STATEMENT -->
+  <section id="problem">
+    <div class="section-header reveal">
+      <span class="section-number">03</span>
+      <h2>💻 Problem Statement</h2>
+    </div>
+    <div class="card reveal">
+      <ul>
+        <li>Each team must select <strong>one SIH Problem Statement</strong> from the list provided by the organizers.</li>
+        <li>Enter the correct <strong>Problem Statement Number and Title</strong>.</li>
+        <li>Teams should <strong>thoroughly understand</strong> the problem before selecting it.</li>
+        <li>Teams should consider:</li>
+        <li class="sub">Technical feasibility</li>
+        <li class="sub">Dataset / API / resource availability</li>
+        <li class="sub">Innovation potential</li>
+        <li class="sub">Social / industrial impact</li>
+        <li class="sub">Ability to build a working prototype within the available time</li>
+        <li>The organizing committee may review the selected Problem Statement or ask a team to <strong>reconsider its selection</strong>.</li>
+        <li>Final Problem Statement selection will be subject to the <strong>internal evaluation process</strong>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4. SOLUTION & INNOVATION -->
+  <section id="solution">
+    <div class="section-header reveal">
+      <span class="section-number">04</span>
+      <h2>🤖 Solution & Innovation</h2>
+    </div>
+    <div class="card reveal">
+      <ul>
+        <li>Solutions must be <strong>original</strong> and developed by the team.</li>
+        <li><strong>Plagiarism</strong> or directly copying another team's solution is strictly prohibited.</li>
+        <li>Teams may use:</li>
+        <li class="sub">Open-source libraries / frameworks</li>
+        <li class="sub">Public datasets</li>
+        <li class="sub">APIs</li>
+        <li class="sub">Pre-trained AI/ML models</li>
+        <li class="sub">Research papers &amp; other legitimate open-source resources</li>
+        <li>Teams must <strong>understand and be able to explain</strong> everything used in their solution.</li>
+        <li>AI tools (ChatGPT, Gemini, Copilot, Claude, etc.) may be used for assistance, but the final solution must be <strong>understood and owned</strong> by the team.</li>
+        <li>Significant external resources should be <strong>properly acknowledged</strong>.</li>
+        <li><strong>Fake datasets</strong>, fabricated results, or misleading claims are <strong>not permitted</strong>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. ELIGIBILITY & DUPLICATE CHECKS -->
+  <section id="eligibility">
+    <div class="section-header reveal">
+      <span class="section-number">05</span>
+      <h2>🔐 Eligibility & Duplicate Checks</h2>
+    </div>
+    <div class="card reveal">
+      <p style="color:var(--text-dim);margin-bottom:1rem;">The organizing committee may verify:</p>
+      <ul>
+        <li>Duplicate enrollment numbers</li>
+        <li>Duplicate team registrations</li>
+        <li>Team size</li>
+        <li>Female-member requirement</li>
+        <li>Student eligibility</li>
+        <li>Problem Statement selection</li>
+        <li>Accuracy of submitted information</li>
+      </ul>
+      <p style="color:var(--orange);margin-top:1rem;font-size:.9rem;">
+        ⚠️ If the same enrollment number appears in multiple teams, the concerned teams may be placed on hold until the issue is resolved.
+      </p>
+    </div>
+  </section>
+
+  <!-- 6. INTERNAL EVALUATION -->
+  <section id="evaluation">
+    <div class="section-header reveal">
+      <span class="section-number">06</span>
+      <h2>📊 Internal Evaluation</h2>
+    </div>
+    <div class="card reveal">
+      <p style="color:var(--text-dim);margin-bottom:1.2rem;">Teams may be evaluated based on the following suggested criteria:</p>
+      <div class="eval-grid">
+        <div class="eval-item">
+          <div class="eval-pct">20%</div>
+          <div class="eval-label">Innovation &amp; Originality</div>
+        </div>
+        <div class="eval-item">
+          <div class="eval-pct">20%</div>
+          <div class="eval-label">Technical Feasibility</div>
+        </div>
+        <div class="eval-item">
+          <div class="eval-pct">20%</div>
+          <div class="eval-label">Prototype / Implementation</div>
+        </div>
+        <div class="eval-item">
+          <div class="eval-pct">15%</div>
+          <div class="eval-label">Understanding of Problem</div>
+        </div>
+        <div class="eval-item">
+          <div class="eval-pct">15%</div>
+          <div class="eval-label">Impact &amp; Usefulness</div>
+        </div>
+        <div class="eval-item">
+          <div class="eval-pct">10%</div>
+          <div class="eval-label">Presentation &amp; Teamwork</div>
+        </div>
+      </div>
+      <p style="color:var(--text-dim);margin-top:1.2rem;font-size:.85rem;font-style:italic;">
+        The final evaluation criteria and weightage may be modified by the organizing committee / faculty.
+      </p>
+    </div>
+  </section>
+
+  <!-- 7. PRESENTATION & DEMO -->
+  <section id="presentation">
+    <div class="section-header reveal">
+      <span class="section-number">07</span>
+      <h2>🎤 Presentation & Demo</h2>
+    </div>
+    <div class="card reveal">
+      <p style="color:var(--text-dim);margin-bottom:1rem;">Every registered team should be prepared to present:</p>
+      <ul>
+        <li>Problem and existing challenges</li>
+        <li>Proposed solution &amp; Innovation</li>
+        <li>Technology and Architecture</li>
+        <li>Working prototype</li>
+        <li>Impact &amp; Future scope</li>
+      </ul>
+      <div style="margin-top:1.2rem;padding:1rem;background:var(--bg-card2);border-radius:8px;border:1px solid var(--border);">
+        <p style="color:var(--neon);font-size:.88rem;font-weight:600;">💡 Pro Tips</p>
+        <ul style="margin-top:.5rem;">
+          <li>Build a <strong>functional prototype/MVP</strong> rather than presenting only an idea.</li>
+          <li>Every member should <strong>understand the project</strong> and their contribution.</li>
+          <li>Judges may ask <strong>technical or conceptual questions</strong> to any team member.</li>
+          <li>The evaluation panel's decision will be <strong>final</strong>.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. PROTOTYPE -->
+  <section id="prototype">
+    <div class="section-header reveal">
+      <span class="section-number">08</span>
+      <h2>🧑‍💻 Prototype</h2>
+    </div>
+    <div class="card reveal">
+      <p style="color:var(--text-dim);margin-bottom:1rem;">A prototype may include:</p>
+      <div class="proto-grid">
+        <span class="proto-tag"><span class="emoji">🌐</span> Web Application</span>
+        <span class="proto-tag"><span class="emoji">📱</span> Mobile Application</span>
+        <span class="proto-tag"><span class="emoji">🤖</span> AI / ML Model</span>
+        <span class="proto-tag"><span class="emoji">🔧</span> Hardware Prototype</span>
+        <span class="proto-tag"><span class="emoji">🌐</span> IoT System</span>
+        <span class="proto-tag"><span class="emoji">☁️</span> Cloud-Based System</span>
+        <span class="proto-tag"><span class="emoji">📊</span> Data Analytics Dashboard</span>
+        <span class="proto-tag"><span class="emoji">🔗</span> API / Service</span>
+        <span class="proto-tag"><span class="emoji">💡</span> Any Tech-Based Solution</span>
+      </div>
+      <p style="color:var(--text-dim);margin-top:1.2rem;font-size:.9rem;">
+        The prototype should clearly demonstrate how the proposed solution addresses the selected SIH Problem Statement.
+      </p>
+    </div>
+  </section>
+
+  <!-- 9. HACKATHON CONDUCT -->
+  <section id="rules">
+    <div class="section-header reveal">
+      <span class="section-number">09</span>
+      <h2>⏱️ Hackathon Conduct</h2>
+    </div>
+    <div class="card reveal">
+      <ul>
+        <li>Follow the <strong>official schedule</strong> and instructions.</li>
+        <li>Report / present at the <strong>assigned time</strong>.</li>
+        <li>Late submissions may be <strong>rejected</strong>.</li>
+        <li>Maintain <strong>professional and respectful</strong> behavior.</li>
+        <li>Harassment, discrimination, abusive behavior, cheating, or misconduct will <strong>not be tolerated</strong>.</li>
+        <li>Follow all <strong>college campus rules</strong> and instructions of the organizers and faculty.</li>
+        <li>Any attempt to <strong>manipulate the evaluation</strong> process may result in disqualification.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 10. DISQUALIFICATION -->
+  <section id="disqualification">
+    <div class="section-header reveal">
+      <span class="section-number">10</span>
+      <h2>🚫 Disqualification</h2>
+    </div>
+    <div class="card reveal">
+      <p style="color:var(--text-dim);margin-bottom:1rem;">A team may be disqualified for:</p>
+      <ul class="dq-list">
+        <li>Providing false or incorrect information</li>
+        <li>Duplicate registration</li>
+        <li>Violation of team-size requirements</li>
+        <li>Failure to meet the female-member requirement</li>
+        <li>Plagiarism or copying another team's solution</li>
+        <li>Fake credentials or fabricated results</li>
+        <li>Misrepresentation of the project</li>
+        <li>Serious misconduct</li>
+        <li>Failure to follow organizer / faculty instructions</li>
+      </ul>
+      <p style="color:var(--text-dim);margin-top:1rem;font-size:.85rem;font-style:italic;">
+        The organizing committee / faculty will have the final decision regarding disqualification.
+      </p>
+    </div>
+  </section>
+
+  <!-- 11. COMMUNICATION -->
+  <section id="communication">
+    <div class="section-header reveal">
+      <span class="section-number">11</span>
+      <h2>📩 Communication</h2>
+    </div>
+    <div class="card reveal">
+      <ul>
+        <li>The <strong>Team Leader</strong> will be the primary contact person.</li>
+        <li>Important announcements will be shared through the <strong>official communication channel</strong>.</li>
+        <li>Team Leaders are responsible for communicating information to their team members.</li>
+        <li>Regularly check <strong>official college communication channels</strong>.</li>
+        <li>Report registration-related issues to the <strong>coordinator</strong> within the specified time.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 12. TEAM LEADER DECLARATION -->
+  <section id="declaration">
+    <div class="section-header reveal">
+      <span class="section-number">12</span>
+      <h2>📋 Team Leader Declaration</h2>
+    </div>
+    <div class="card reveal" style="border-color:rgba(0,255,170,.2);">
+      <p style="color:var(--text-dim);margin-bottom:1rem;">Before submitting the form, the Team Leader must agree to the following declaration:</p>
+      <blockquote style="border-left:3px solid var(--neon);padding:.8rem 1.2rem;background:rgba(0,255,170,.04);border-radius:0 8px 8px 0;color:var(--text);font-size:.9rem;line-height:1.8;margin-bottom:1rem;">
+        "The information provided in the registration form is true and accurate. All listed members have agreed to participate in the Internal SIH 2026 Hackathon, and the team complies with the specified eligibility and team formation requirements. I understand that providing false information, duplicate registration, plagiarism, or violation of the rules may result in disqualification."
+      </blockquote>
+      <div style="display:flex;align-items:center;gap:.5rem;color:var(--neon);font-weight:600;">
+        <span style="font-size:1.2rem;">☑️</span> I Agree
+      </div>
+    </div>
+  </section>
+
+</div><!-- /content -->
+
+<!-- ════════ IMPORTANT BANNER ════════ -->
+<div class="important-banner reveal">
+  <div class="banner-inner">
+    <h3>⚠️ Important</h3>
+    <p style="margin-bottom:1rem;"><strong>Registration Flow:</strong></p>
+    <div class="flow">
+      <span class="flow-step">Form Submitted</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">Automated Checks</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">Coordinator Verification</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step" style="border-color:var(--neon);color:var(--neon);">Approved ✔</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step">Internal Evaluation</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-step" style="border-color:var(--neon);color:var(--neon);">Shortlisted 🎉</span>
+    </div>
+    <p>Submission of the registration form <strong>does not guarantee final acceptance</strong>. Teams will be considered officially registered only after <strong>verification and approval</strong> by the organizing committee.</p>
+    <p style="margin-top:.8rem;color:var(--orange);">🔔 Team Leaders must carefully verify all team details before submitting the form.</p>
+  </div>
+</div>
+
+<!-- ════════ CTA ════════ -->
+<section class="cta-section" id="cta">
+  <h2>Ready to Build Something Impactful? 🚀</h2>
+  <p>Fill out the registration form and take your first step towards SIH 2026!</p>
+  <div class="cta-buttons">
+    <a href="#" onclick="openModal(event)" class="btn btn-primary">
+      Register Now →
+    </a>
+    <a href="https://chat.whatsapp.com/JWg14I2O3pTCVy9jIJcwgS?s=sh&p=a&ilr=0" target="_blank" class="btn btn-whatsapp">
+      Join WhatsApp Group 👥
+    </a>
+    <a href="https://whatsapp.com/channel/0029Vb8ZEu0EAKW92FDyPO18" target="_blank" class="btn btn-outline">
+      WhatsApp Channel 📢
+    </a>
+    <a href="https://www.instagram.com/uecxsih?utm_source=qr&igsh=ejl1YTA0d3Bkc3Rx" target="_blank" class="btn btn-instagram">
+      Follow on Instagram 📸
+    </a>
+  </div>
+</section>
+
+<!-- ════════ CONFIRMATION MODAL ════════ -->
+<div class="modal-overlay" id="registerModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div class="modal-icon">📋</div>
+    <h3>Have You Read the Guidelines?</h3>
+    <p>Before registering, please make sure you have completely read and understood all the hackathon rules and guidelines above.</p>
+    <div class="modal-checkbox" id="confirmBox" onclick="toggleConfirm()">
+      <input type="checkbox" id="confirmCheck" />
+      <label for="confirmCheck">I confirm that I have completely read and understood all the guidelines, rules, and requirements for Internal SIH 2026.</label>
+    </div>
+    <a id="registerLink" class="modal-btn-register" onclick="handleRegister(event)">
+      🔒 Check the box above to proceed
+    </a>
+  </div>
+</div>
+
+<!-- ════════ FOOTER ════════ -->
+<footer>
+  <p>Built with <span class="heart">♥</span> by <a href="https://www.instagram.com/uecxsih?utm_source=qr&igsh=ejl1YTA0d3Bkc3Rx" target="_blank">UEC Campus Catalyst</a> &nbsp;|&nbsp; Internal SIH 2026</p>
+  <p style="margin-top:.4rem;font-size:.75rem;">
+    <a href="https://www.instagram.com/uecxsih?utm_source=qr&igsh=ejl1YTA0d3Bkc3Rx" target="_blank">Instagram</a>
+    &nbsp;·&nbsp;
+    <a href="https://chat.whatsapp.com/JWg14I2O3pTCVy9jIJcwgS?s=sh&p=a&ilr=0" target="_blank">WhatsApp Group</a>
+    &nbsp;·&nbsp;
+    <a href="https://whatsapp.com/channel/0029Vb8ZEu0EAKW92FDyPO18" target="_blank">WhatsApp Channel</a>
+  </p>
+</footer>
+
+<script>
+  // ╔══════════════════════════════════════════════════════════════╗
+  // ║          🔐 SECURITY & ANTI-TAMPERING MODULE                ║
+  // ╚══════════════════════════════════════════════════════════════╝
+
+  // ── Encoded URLs (not visible as plain text in source) ──
+  const _0x = {
+    f: atob('aHR0cHM6Ly9kb2NzLmdvb2dsZS5jb20vZm9ybXMvZC9lLzFGQUlwUUxTZFVIQVhUSExXN2M1Ym04azBCVGw0R3VueHFVWm1OblNaa0F2U1ZmRGhUOUtqQnVBL3ZpZXdmb3JtP3VzcD1kaWFsb2c='),
+    w: atob('aHR0cHM6Ly9jaGF0LndoYXRzYXBwLmNvbS9KV2cxNEkyTzNwVENWeTlqSUpjd2dT'),
+    c: atob('aHR0cHM6Ly93aGF0c2FwcC5jb20vY2hhbm5lbC8wMDI5VmI4WkV1MEVBS1c5MkZEeVBPMTg='),
+    i: atob('aHR0cHM6Ly93d3cuaW5zdGFncmFtLmNvbS91ZWN4c2lo')
+  };
+
+  // ── Integrity hashes of trusted URLs ──
+  async function sha256(text) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  const TRUSTED_HASHES = {};
+  (async () => {
+    TRUSTED_HASHES.form     = await sha256(_0x.f);
+    TRUSTED_HASHES.whatsapp = await sha256(_0x.w);
+    TRUSTED_HASHES.channel  = await sha256(_0x.c);
+    TRUSTED_HASHES.insta    = await sha256(_0x.i);
+  })();
+
+  // ── Link map: which elements should point where ──
+  const LINK_MAP = [
+    { selector: 'a[href*="chat.whatsapp.com"]',         url: () => _0x.w },
+    { selector: 'a[href*="whatsapp.com/channel"]',       url: () => _0x.c },
+    { selector: 'a[href*="instagram.com"]',              url: () => _0x.i },
+  ];
+
+  // ── Self-healing: verify & restore all links periodically ──
+  function healLinks() {
+    LINK_MAP.forEach(({ selector, url }) => {
+      document.querySelectorAll(selector).forEach(el => {
+        const correct = url();
+        if (el.href !== correct && el.getAttribute('href') !== '#') {
+          el.href = correct;
+        }
+      });
+    });
+  }
+
+  // ── MutationObserver: detect DOM tampering in real-time ──
+  const protectedZone = document.body;
+  const domObserver = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'href') {
+        const el = mutation.target;
+        if (el.tagName === 'A') {
+          // Check if this link was changed to something untrusted
+          LINK_MAP.forEach(({ selector, url }) => {
+            if (el.matches(selector) || el.closest(selector)) {
+              const correct = url();
+              if (el.href !== correct) {
+                el.href = correct;
+                console.warn('🔐 Tampering detected and reverted.');
+              }
+            }
+          });
+        }
+      }
+
+      // Detect removal of critical elements
+      if (mutation.type === 'childList') {
+        mutation.removedNodes.forEach(node => {
+          if (node.id === 'registerModal' || node.id === 'confirmCheck') {
+            location.reload();
+          }
+        });
+      }
+    }
+  });
+
+  domObserver.observe(protectedZone, {
+    attributes: true,
+    childList: true,
+    subtree: true,
+    attributeFilter: ['href', 'action', 'onclick']
+  });
+
+  // Run self-healing every 3 seconds
+  setInterval(healLinks, 3000);
+
+  // ── Block right-click context menu ──
+  document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    return false;
+  });
+
+  // ── Block dev tools shortcuts ──
+  document.addEventListener('keydown', (e) => {
+    // F12
+    if (e.key === 'F12') { e.preventDefault(); return false; }
+    // Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C
+    if (e.ctrlKey && e.shiftKey && ['I','i','J','j','C','c'].includes(e.key)) {
+      e.preventDefault(); return false;
+    }
+    // Ctrl+U (view source)
+    if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
+      e.preventDefault(); return false;
+    }
+    // Ctrl+S (save page)
+    if (e.ctrlKey && (e.key === 's' || e.key === 'S')) {
+      e.preventDefault(); return false;
+    }
+  });
+
+  // ── Block drag on links & images ──
+  document.addEventListener('dragstart', (e) => {
+    if (e.target.tagName === 'A' || e.target.tagName === 'IMG') {
+      e.preventDefault();
+    }
+  });
+
+  // ── Anti-debugging: detect DevTools via timing ──
+  (function antiDebug() {
+    const threshold = 160;
+    setInterval(() => {
+      const start = performance.now();
+      debugger;
+      const end = performance.now();
+      if (end - start > threshold) {
+        // DevTools detected - scramble nothing but log warning
+        console.warn('🔐 Development tools detected. Link integrity is being monitored.');
+      }
+    }, 5000);
+  })();
+
+  // ── Disable text selection on critical elements ──
+  document.querySelectorAll('.announce-bar, .nav-cta, .btn-primary, .btn-whatsapp, .btn-instagram, .modal-btn-register').forEach(el => {
+    el.style.userSelect = 'none';
+    el.style.webkitUserSelect = 'none';
+  });
+
+  // ── Console warning ──
+  console.log(
+    '%c🔐 SECURITY NOTICE',
+    'color:#00ffaa;font-size:20px;font-weight:900;text-shadow:0 0 10px #00ffaa;'
+  );
+  console.log(
+    '%cThis website is protected. All links are integrity-verified and tamper-proof. Any modifications will be automatically detected and reverted.',
+    'color:#94a3b8;font-size:13px;'
+  );
+  console.log(
+    '%c⚠️ If you are not a developer of this page, close this window immediately.',
+    'color:#ef4444;font-size:14px;font-weight:700;'
+  );
+
+  // ╔══════════════════════════════════════════════════════════════╗
+  // ║              SITE FUNCTIONALITY (PROTECTED)                 ║
+  // ╚══════════════════════════════════════════════════════════════╝
+
+  // ── Particles ──
+  (function createParticles() {
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 30; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.animationDuration = (6 + Math.random() * 10) + 's';
+      p.style.animationDelay = (Math.random() * 8) + 's';
+      p.style.width = p.style.height = (2 + Math.random() * 3) + 'px';
+      container.appendChild(p);
+    }
+  })();
+
+  // ── Navbar scroll effect ──
+  const navbar = document.getElementById('navbar');
+  const progressBar = document.getElementById('progressBar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+    const scrollPct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    progressBar.style.width = scrollPct + '%';
+  });
+
+  // ── Mobile nav ──
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  function closeNav() {
+    document.getElementById('navLinks').classList.remove('open');
+  }
+
+  // ── Close announcement bar ──
+  function closeAnnounce() {
+    document.getElementById('announceBar').style.display = 'none';
+    document.body.classList.remove('has-announce');
+  }
+
+  // ── Registration modal (secure) ──
+  const FORM_URL = _0x.f; // decoded at runtime, not visible in source
+  const modal = document.getElementById('registerModal');
+  const confirmCheck = document.getElementById('confirmCheck');
+  const confirmBox = document.getElementById('confirmBox');
+  const registerLink = document.getElementById('registerLink');
+
+  function openModal(e) {
+    e.preventDefault();
+    confirmCheck.checked = false;
+    confirmBox.classList.remove('checked');
+    registerLink.classList.remove('active');
+    registerLink.innerHTML = '🔒 Check the box above to proceed';
+    registerLink.removeAttribute('href');
+    registerLink.removeAttribute('target');
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+    // Clear form URL from DOM when modal closes
+    registerLink.removeAttribute('href');
+    registerLink.removeAttribute('target');
+  }
+
+  function toggleConfirm() {
+    confirmCheck.checked = !confirmCheck.checked;
+    confirmBox.classList.toggle('checked', confirmCheck.checked);
+    if (confirmCheck.checked) {
+      registerLink.classList.add('active');
+      registerLink.innerHTML = '🚀 Proceed to Registration Form →';
+      // URL is decoded only at this moment
+      registerLink.href = _0x.f;
+      registerLink.target = '_blank';
+      registerLink.rel = 'noopener noreferrer';
+    } else {
+      registerLink.classList.remove('active');
+      registerLink.innerHTML = '🔒 Check the box above to proceed';
+      registerLink.removeAttribute('href');
+      registerLink.removeAttribute('target');
+    }
+  }
+
+  function handleRegister(e) {
+    if (!confirmCheck.checked) {
+      e.preventDefault();
+      confirmBox.style.animation = 'shake .4s ease';
+      setTimeout(() => confirmBox.style.animation = '', 400);
+      return false;
+    }
+    // Final integrity check before navigation
+    (async () => {
+      const hash = await sha256(registerLink.href);
+      if (hash !== TRUSTED_HASHES.form) {
+        e.preventDefault();
+        alert('⚠️ Security Alert: Registration link integrity check failed. Page will reload.');
+        location.reload();
+      }
+    })();
+  }
+
+  // Close modal on overlay click
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) closeModal();
+  });
+
+  // Close modal on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // ── Reveal on scroll ──
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // ── Final: initial link heal on load ──
+  window.addEventListener('load', healLinks);
+</script>
+
+</body>
+</html>
