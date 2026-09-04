@@ -1,0 +1,460 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Schedule | Internal SIH 2026</title>
+  <meta name="description" content="Official Event Schedule for Internal SIH 2026 — UEC Campus Catalyst. Day 1: 10 Sept & Day 2: 11 Sept." />
+  <meta property="og:title" content="📅 Internal SIH 2026 — Official Schedule" />
+  <meta property="og:image" content="https://yatharth369.github.io/sih2026/logo.png" />
+  <meta property="og:url" content="https://yatharth369.github.io/sih2026/schedule.html" />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #06060e; --bg-card: #0d0d1a; --bg-card2: #111126;
+      --neon: #00ffaa; --neon2: #00d4ff; --purple: #a855f7;
+      --orange: #fb923c; --red: #ef4444; --yellow: #facc15;
+      --text: #e2e8f0; --text-dim: #94a3b8; --border: #1e293b;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter','Space Grotesk',sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+    a { color: var(--neon); text-decoration: none; transition: .2s; }
+    a:hover { color: var(--neon2); }
+    .bg-grid {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(0,255,170,.03) 1px,transparent 1px), linear-gradient(90deg,rgba(0,255,170,.03) 1px,transparent 1px);
+      background-size: 60px 60px; animation: gridScroll 20s linear infinite;
+    }
+    @keyframes gridScroll { 100% { background-position: 60px 60px; } }
+    .progress-bar { position: fixed; top: 0; left: 0; height: 3px; z-index: 1001; background: linear-gradient(90deg,var(--neon),var(--neon2),var(--purple)); width: 0%; box-shadow: 0 0 10px var(--neon); }
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: .8rem 2rem; background: rgba(6,6,14,.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    .nav-brand { display: flex; align-items: center; gap: .5rem; font-family: 'Fira Code',monospace; font-weight: 700; font-size: 1.1rem; color: var(--neon); }
+    .nav-logo { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
+    .nav-links { display: flex; gap: 1.4rem; list-style: none; align-items: center; }
+    .nav-links a { color: var(--text-dim); font-size: .88rem; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; }
+    .nav-links a:hover, .nav-links a.active { color: var(--neon); }
+    .nav-cta { padding: .5rem 1.2rem; border-radius: 6px; background: linear-gradient(135deg,var(--neon),var(--neon2)); color: #06060e !important; font-weight: 700; font-size: .85rem; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 26px; height: 2px; background: var(--neon); border-radius: 2px; }
+    @media (max-width: 860px) {
+      .hamburger { display: flex; }
+      .nav-links { position: fixed; top: 0; right: -100%; width: 260px; height: 100vh; flex-direction: column; gap: 0; align-items: flex-start; background: rgba(6,6,14,.97); backdrop-filter: blur(20px); padding: 5rem 2rem 2rem; border-left: 1px solid var(--border); transition: right .3s; }
+      .nav-links.open { right: 0; }
+      .nav-links a { padding: .8rem 0; border-bottom: 1px solid var(--border); width: 100%; }
+    }
+    .page-hero { position: relative; z-index: 1; padding: 8rem 2rem 3rem; text-align: center; }
+    .page-hero .badge { display: inline-flex; align-items: center; gap: .4rem; padding: .35rem .9rem; border-radius: 100px; border: 1px solid rgba(0,255,170,.3); background: rgba(0,255,170,.06); font-family: 'Fira Code',monospace; font-size: .78rem; color: var(--neon); margin-bottom: 1.2rem; }
+    .page-hero h1 { font-family: 'Space Grotesk',sans-serif; font-size: clamp(2rem,5vw,3.4rem); font-weight: 900; line-height: 1.1; background: linear-gradient(135deg,#fff 0%,var(--neon) 50%,var(--neon2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: .8rem; }
+    .page-hero p { color: var(--text-dim); font-size: 1rem; max-width: 520px; margin: 0 auto 1.5rem; }
+    .back-btn { display: inline-flex; align-items: center; gap: .4rem; padding: .6rem 1.4rem; border-radius: 8px; border: 2px solid var(--neon); color: var(--neon); font-weight: 700; font-size: .88rem; transition: all .25s; }
+    .back-btn:hover { background: rgba(0,255,170,.08); transform: translateY(-2px); color: var(--neon); text-shadow: none; }
+    .day-tabs { position: relative; z-index: 1; display: flex; justify-content: center; gap: 1rem; padding: 0 2rem 3rem; flex-wrap: wrap; }
+    .day-tab { padding: .7rem 2rem; border-radius: 8px; border: 2px solid var(--border); background: var(--bg-card); font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: .95rem; color: var(--text-dim); cursor: pointer; transition: all .3s; text-transform: uppercase; letter-spacing: .05em; }
+    .day-tab:hover { border-color: rgba(0,255,170,.3); color: var(--text); }
+    .day-tab.active { border-color: var(--neon); color: var(--neon); background: rgba(0,255,170,.06); box-shadow: 0 0 20px rgba(0,255,170,.15); }
+    .content { position: relative; z-index: 1; }
+    .timeline-section { max-width: 800px; margin: 0 auto; padding: 0 2rem 4rem; display: none; }
+    .timeline-section.active { display: block; }
+    .day-header { text-align: center; margin-bottom: 3rem; }
+    .day-num { display: inline-block; font-family: 'Fira Code',monospace; font-size: .75rem; color: var(--bg); background: var(--neon); padding: .2rem .7rem; border-radius: 4px; font-weight: 700; margin-bottom: .8rem; }
+    .day-header h2 { font-family: 'Space Grotesk',sans-serif; font-size: clamp(1.6rem,4vw,2.2rem); font-weight: 900; background: linear-gradient(135deg,#fff,var(--neon)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .date-badge { display: inline-flex; align-items: center; gap: .4rem; margin-top: .6rem; padding: .4rem 1rem; border-radius: 100px; background: var(--bg-card2); border: 1px solid var(--border); font-size: .85rem; color: var(--text-dim); }
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg,var(--neon),var(--neon2),var(--purple),transparent); }
+    .timeline-item { position: relative; margin-bottom: 2rem; }
+    .timeline-item::before { content: ''; position: absolute; left: -2.45rem; top: 1.2rem; width: 12px; height: 12px; border-radius: 50%; background: var(--neon); box-shadow: 0 0 10px rgba(0,255,170,.5); }
+    .timeline-item.break::before { background: var(--orange); box-shadow: 0 0 10px rgba(251,146,60,.5); }
+    .timeline-item.eval::before { background: var(--purple); box-shadow: 0 0 10px rgba(168,85,247,.5); }
+    .timeline-item.final::before { background: var(--yellow); box-shadow: 0 0 10px rgba(250,204,21,.5); }
+    .timeline-item.closing::before { background: var(--red); box-shadow: 0 0 10px rgba(239,68,68,.5); }
+    .time-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem 1.6rem; transition: all .3s; position: relative; overflow: hidden; }
+    .time-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; opacity: 0; transition: opacity .3s; }
+    .time-card:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(0,0,0,.3); }
+    .time-card:hover::before { opacity: 1; }
+    .time-card.work { border-left: 3px solid var(--neon); }
+    .time-card.work::before { background: linear-gradient(90deg,var(--neon),transparent); }
+    .time-card.break { border-left: 3px solid var(--orange); }
+    .time-card.break::before { background: linear-gradient(90deg,var(--orange),transparent); }
+    .time-card.eval { border-left: 3px solid var(--purple); }
+    .time-card.eval::before { background: linear-gradient(90deg,var(--purple),transparent); }
+    .time-card.final { border-left: 3px solid var(--yellow); }
+    .time-card.final::before { background: linear-gradient(90deg,var(--yellow),transparent); }
+    .time-card.closing { border-left: 3px solid var(--red); }
+    .time-card.closing::before { background: linear-gradient(90deg,var(--red),transparent); }
+    .time-badge { display: inline-flex; align-items: center; gap: .35rem; font-family: 'Fira Code',monospace; font-size: .78rem; font-weight: 700; padding: .25rem .7rem; border-radius: 100px; background: rgba(0,255,170,.08); color: var(--neon); border: 1px solid rgba(0,255,170,.2); margin-bottom: .7rem; }
+    .time-card.break .time-badge { background: rgba(251,146,60,.08); color: var(--orange); border-color: rgba(251,146,60,.2); }
+    .time-card.eval .time-badge { background: rgba(168,85,247,.08); color: var(--purple); border-color: rgba(168,85,247,.2); }
+    .time-card.final .time-badge { background: rgba(250,204,21,.08); color: var(--yellow); border-color: rgba(250,204,21,.2); }
+    .time-card.closing .time-badge { background: rgba(239,68,68,.08); color: var(--red); border-color: rgba(239,68,68,.2); }
+    .time-card h3 { font-family: 'Space Grotesk',sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: .6rem; color: var(--text); }
+    .time-card p { color: var(--text-dim); font-size: .88rem; margin-bottom: .5rem; }
+    .time-card ul { list-style: none; padding: 0; }
+    .time-card li { position: relative; padding: .3rem 0 .3rem 1.4rem; color: var(--text-dim); font-size: .86rem; }
+    .time-card li::before { content: '▹'; position: absolute; left: 0; color: var(--neon); font-weight: 700; }
+    .time-card.break li::before { color: var(--orange); }
+    .time-card.eval li::before { color: var(--purple); }
+    .time-card.final li::before { color: var(--yellow); }
+    .time-card li strong { color: var(--text); }
+    .glance-section { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 2rem 4rem; }
+    .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+    .section-number { font-family: 'Fira Code',monospace; font-size: .8rem; color: var(--bg); background: var(--neon); padding: .2rem .6rem; border-radius: 4px; font-weight: 700; flex-shrink: 0; }
+    .section-header h2 { font-family: 'Space Grotesk',sans-serif; font-size: clamp(1.3rem,3vw,1.7rem); font-weight: 800; background: linear-gradient(135deg,#fff,var(--neon)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .section-header::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg,var(--border),transparent); }
+    .glance-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    .glance-table th { background: var(--bg-card2); color: var(--neon); font-family: 'Fira Code',monospace; font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; padding: .9rem 1rem; text-align: left; border-bottom: 2px solid var(--neon); }
+    .glance-table td { padding: .7rem 1rem; border-bottom: 1px solid var(--border); color: var(--text-dim); vertical-align: top; }
+    .glance-table tr:hover td { background: rgba(0,255,170,.02); }
+    .glance-table .day-row td { background: var(--bg-card2); color: var(--neon); font-weight: 700; }
+    .guidelines-section { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 2rem 5rem; }
+    .guide-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 1.2rem; }
+    .guide-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem; transition: all .3s; position: relative; overflow: hidden; }
+    .guide-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; opacity: 0; transition: opacity .3s; background: linear-gradient(90deg,transparent,var(--neon),transparent); }
+    .guide-card:hover { border-color: rgba(0,255,170,.2); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,.3); }
+    .guide-card:hover::before { opacity: 1; }
+    .guide-card .guide-icon { font-size: 1.8rem; margin-bottom: .7rem; }
+    .guide-card h4 { font-family: 'Space Grotesk',sans-serif; font-size: .95rem; font-weight: 700; color: var(--text); margin-bottom: .6rem; }
+    .guide-card ul { list-style: none; padding: 0; }
+    .guide-card li { position: relative; padding: .3rem 0 .3rem 1.3rem; color: var(--text-dim); font-size: .83rem; }
+    .guide-card li::before { content: '▹'; position: absolute; left: 0; color: var(--neon); }
+    .hw-alert { background: linear-gradient(135deg,rgba(251,146,60,.08),rgba(239,68,68,.05)); border: 1px solid rgba(251,146,60,.3); border-radius: 12px; padding: 1.5rem; margin-top: 1.2rem; position: relative; overflow: hidden; }
+    .hw-alert::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg,transparent,var(--orange),var(--red),transparent); }
+    .hw-alert h4 { color: var(--orange); margin-bottom: .6rem; font-size: 1rem; }
+    .hw-alert p, .hw-alert li { color: var(--text-dim); font-size: .88rem; line-height: 1.7; }
+    .hw-alert ul { list-style: none; padding: 0; margin-top: .7rem; }
+    .hw-alert li { position: relative; padding: .25rem 0 .25rem 1.3rem; }
+    .hw-alert li::before { content: '▹'; position: absolute; left: 0; color: var(--orange); }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s, transform .6s; }
+    .reveal.visible { opacity: 1; transform: none; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(var(--neon),var(--neon2)); border-radius: 4px; }
+  </style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="progress-bar" id="progressBar"></div>
+
+<nav class="navbar">
+  <div class="nav-brand">
+    <img src="logo.png" alt="UEC x SIH" class="nav-logo" />
+    <span>SIH<span style="color:var(--neon2)">2026</span></span>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html" onclick="closeNav()">Guidelines</a></li>
+    <li><a href="schedule.html" class="active" onclick="closeNav()">Schedule</a></li>
+    <li><a href="index.html#cta" class="nav-cta" onclick="closeNav()">Register 🚀</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="page-hero reveal">
+  <div class="badge">📅 Official Event Schedule</div>
+  <h1>UEC × SIH 2026<br/>Hackathon Schedule</h1>
+  <p>10–11 September 2026 &nbsp;•&nbsp; TPO Office / Conference Room</p>
+  <a href="index.html" class="back-btn">← Back to Guidelines</a>
+</div>
+
+<div class="day-tabs reveal">
+  <button class="day-tab active" onclick="switchDay('day1',this)">🗓️ Day 1 — 10 Sept</button>
+  <button class="day-tab" onclick="switchDay('day2',this)">🗓️ Day 2 — 11 Sept</button>
+</div>
+
+<div class="content">
+
+  <!-- DAY 1 -->
+  <div class="timeline-section active" id="day1">
+    <div class="day-header reveal">
+      <div class="day-num">DAY 01</div>
+      <h2>10 September 2026</h2>
+      <div class="date-badge">📍 TPO Office / Conference Room</div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="time-card work">
+          <div class="time-badge">⏰ 9:30 AM – 10:30 AM</div>
+          <h3>Reporting, Attendance &amp; Verification</h3>
+          <p>All participants are required to report to the <strong>TPO Office by 9:30 AM</strong>.</p>
+          <ul>
+            <li>Attendance of all participants will be recorded.</li>
+            <li>Team and participant verification will be completed.</li>
+            <li>Participants must have their <strong>SIH Problem Statement details verified</strong> before reporting.</li>
+            <li>Verification form must include: <strong>Problem Statement, Description &amp; Code/Number</strong>.</li>
+          </ul>
+          <p style="margin-top:.8rem;padding:.7rem;background:rgba(0,212,255,.05);border-radius:8px;border:1px solid rgba(0,212,255,.15);color:var(--neon2);font-size:.82rem;">⚠️ Verify your Problem Statement and code from the official SIH portal before arriving.</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="time-card work">
+          <div class="time-badge">⏰ 10:30 AM – 1:30 PM</div>
+          <h3>Project Development &amp; Hackathon Work</h3>
+          <p>Teams begin working on their projects. Venue: <strong>TPO Office / Conference Room</strong>.</p>
+          <ul>
+            <li>Problem analysis and solution planning</li>
+            <li>Coding and software development</li>
+            <li>Research and technical development</li>
+            <li>Hardware/IoT development and integration</li>
+            <li>Prototype development, testing and debugging</li>
+            <li>Documentation and project preparation</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item break reveal">
+        <div class="time-card break">
+          <div class="time-badge">☕ 1:30 PM – 2:00 PM</div>
+          <h3>Refreshment Break</h3>
+          <ul>
+            <li>Refreshments will be provided by the college.</li>
+            <li>Participants may use this period for a short break.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="time-card work">
+          <div class="time-badge">⏰ 2:00 PM – 4:30 PM</div>
+          <h3>Project Development &amp; Hackathon Work</h3>
+          <p>Teams resume project work. Focus on:</p>
+          <ul>
+            <li>Continuing implementation and improving the solution</li>
+            <li>Integrating hardware/software components</li>
+            <li>Testing the project and fixing technical issues</li>
+            <li>Preparing for Evaluation Round 1</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item eval reveal">
+        <div class="time-card eval">
+          <div class="time-badge">🔍 4:30 PM – 5:30 PM</div>
+          <h3>Evaluation Round 1 – Progress Evaluation</h3>
+          <p>First evaluation by faculty members/mentors. Each team should explain:</p>
+          <ul>
+            <li>Selected problem statement and the problem being addressed</li>
+            <li>Proposed solution and work completed so far</li>
+            <li>Current implementation and prototype/demo</li>
+            <li>Technical challenges faced and planned next steps</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item closing reveal">
+        <div class="time-card closing">
+          <div class="time-badge">🏁 5:30 PM</div>
+          <h3>Day 1 Closing, Progress Reporting &amp; Checkout</h3>
+          <p>Day 1 officially concludes at <strong>5:30 PM</strong>. Before leaving:</p>
+          <ul>
+            <li>Report work completed and communicate current project status.</li>
+            <li>Mention pending tasks for Day 2.</li>
+            <li>Ensure workspace is organized and cleared.</li>
+            <li>Complete required checkout formalities.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="timeline-section" id="day2">
+    <div class="day-header reveal">
+      <div class="day-num">DAY 02</div>
+      <h2>11 September 2026</h2>
+      <div class="date-badge">📍 TPO Office / Conference Room</div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="time-card work">
+          <div class="time-badge">⏰ 10:00 AM – 10:30 AM</div>
+          <h3>Reporting, Attendance &amp; Verification</h3>
+          <p>All participants must report by <strong>10:00 AM</strong>.</p>
+          <ul>
+            <li>Attendance will be recorded.</li>
+            <li>Team participation will be verified.</li>
+            <li>Any remaining administrative formalities will be completed.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="time-card work">
+          <div class="time-badge">⏰ 10:30 AM – 1:00 PM</div>
+          <h3>Project Development &amp; Hackathon Work</h3>
+          <p>Teams continue working. Focus on:</p>
+          <ul>
+            <li>Completing project development and finalizing implementation</li>
+            <li>Testing, debugging and improving the prototype</li>
+            <li>Resolving technical issues</li>
+            <li>Preparing the solution for Evaluation Round 2</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item break reveal">
+        <div class="time-card break">
+          <div class="time-badge">☕ 1:00 PM – 1:30 PM</div>
+          <h3>Refreshment Break</h3>
+          <ul>
+            <li>Refreshments will be provided by the college.</li>
+            <li>Participants may use this time for a short break.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="time-card work">
+          <div class="time-badge">⏰ 1:30 PM – 2:30 PM</div>
+          <h3>Final Project Preparation</h3>
+          <p>Teams prepare for Evaluation Round 2:</p>
+          <ul>
+            <li>Completing pending development and final testing</li>
+            <li>Prototype/demo preparation and documentation</li>
+            <li>Reviewing technical details and preparing for judge questions</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item eval reveal">
+        <div class="time-card eval">
+          <div class="time-badge">🔍 2:30 PM – 4:30 PM</div>
+          <h3>Evaluation Round 2 &amp; Shortlisting</h3>
+          <p>Teams evaluated by the judging panel on:</p>
+          <ul>
+            <li>Understanding of the problem statement</li>
+            <li>Quality of solution and technical implementation</li>
+            <li>Innovation, uniqueness and functionality</li>
+            <li>Feasibility, practical impact and overall execution</li>
+          </ul>
+          <p style="margin-top:.8rem;padding:.7rem;background:rgba(168,85,247,.06);border-radius:8px;border:1px solid rgba(168,85,247,.2);color:var(--purple);font-size:.84rem;font-weight:600;">🏆 ~5–7 teams will be shortlisted for the Final Presentation Round.</p>
+        </div>
+      </div>
+      <div class="timeline-item final reveal">
+        <div class="time-card final">
+          <div class="time-badge">🎤 4:30 PM – 5:10 PM</div>
+          <h3>Final Presentation &amp; Q&amp;A Round</h3>
+          <p>Shortlisted teams present to the judging panel:</p>
+          <ul>
+            <li>Problem Statement and Problem Understanding</li>
+            <li>Proposed Solution and Technology &amp; Implementation</li>
+            <li>Working Prototype/Demo</li>
+            <li>Innovation, Uniqueness, Impact &amp; Future Scope</li>
+          </ul>
+          <p style="margin-top:.6rem;color:var(--text-dim);font-size:.85rem;">Judges may ask about architecture, scalability, real-world applications, and limitations.</p>
+        </div>
+      </div>
+      <div class="timeline-item closing reveal">
+        <div class="time-card closing">
+          <div class="time-badge">🏆 5:10 PM – 5:30 PM</div>
+          <h3>Final Judging &amp; Winner Announcement</h3>
+          <ul>
+            <li>Judging panel will finalize the evaluation.</li>
+            <li>Scores/results will be consolidated.</li>
+            <li><strong>Final winners will be announced.</strong></li>
+            <li>Hackathon officially concludes at <strong>5:30 PM</strong>.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AT A GLANCE -->
+  <div class="glance-section reveal">
+    <div class="section-header">
+      <span class="section-number">📊</span>
+      <h2>Schedule at a Glance</h2>
+    </div>
+    <div style="overflow-x:auto;border-radius:12px;border:1px solid var(--border);">
+      <table class="glance-table">
+        <thead><tr><th>Day</th><th>Time</th><th>Activity</th></tr></thead>
+        <tbody>
+          <tr class="day-row"><td colspan="3">📅 Day 1 — 10 September 2026</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;">9:30 – 10:30 AM</td><td>Reporting, Attendance &amp; Verification</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;">10:30 AM – 1:30 PM</td><td>Project Development &amp; Hackathon Work</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;color:var(--orange);">1:30 – 2:00 PM</td><td style="color:var(--orange);">☕ Refreshment Break</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;">2:00 – 4:30 PM</td><td>Project Development &amp; Hackathon Work</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;color:var(--purple);">4:30 – 5:30 PM</td><td style="color:var(--purple);">🔍 Evaluation Round 1 – Progress Evaluation</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;color:var(--red);">5:30 PM</td><td style="color:var(--red);">🏁 Day 1 Closing &amp; Checkout</td></tr>
+          <tr class="day-row"><td colspan="3">📅 Day 2 — 11 September 2026</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;">10:00 – 10:30 AM</td><td>Reporting, Attendance &amp; Verification</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;">10:30 AM – 1:00 PM</td><td>Project Development &amp; Hackathon Work</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;color:var(--orange);">1:00 – 1:30 PM</td><td style="color:var(--orange);">☕ Refreshment Break</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;">1:30 – 2:30 PM</td><td>Final Project Preparation</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;color:var(--purple);">2:30 – 4:30 PM</td><td style="color:var(--purple);">🔍 Evaluation Round 2 &amp; Shortlisting</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;color:var(--yellow);">4:30 – 5:10 PM</td><td style="color:var(--yellow);">🎤 Final Presentation &amp; Q&amp;A</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;color:var(--neon);">5:10 – 5:30 PM</td><td style="color:var(--neon);">🏆 Final Judging &amp; Winner Announcement</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- GUIDELINES -->
+  <div class="guidelines-section">
+    <div class="section-header reveal">
+      <span class="section-number">📌</span>
+      <h2>Important Participant Guidelines</h2>
+    </div>
+    <div class="guide-grid">
+      <div class="guide-card reveal">
+        <div class="guide-icon">📋</div>
+        <h4>Before the Hackathon</h4>
+        <ul>
+          <li>Verify your SIH Problem Statement and Code/Number in advance.</li>
+          <li>Keep all required documents ready.</li>
+          <li>Ensure every team member understands the selected problem.</li>
+          <li>Arrive prepared to begin work immediately after verification.</li>
+        </ul>
+      </div>
+      <div class="guide-card reveal">
+        <div class="guide-icon">⏱️</div>
+        <h4>During the Hackathon</h4>
+        <ul>
+          <li>Report strictly according to scheduled timings.</li>
+          <li>Maintain continuous progress throughout the event.</li>
+          <li>Keep project ready for evaluation at all times.</li>
+          <li>Follow all instructions from faculty, mentors, and judges.</li>
+          <li>Maintain professional conduct throughout.</li>
+        </ul>
+      </div>
+      <div class="guide-card reveal">
+        <div class="guide-icon">🎤</div>
+        <h4>Final Presentation</h4>
+        <ul>
+          <li>Have your PPT and working prototype/demo ready.</li>
+          <li>Every member must know the problem &amp; solution.</li>
+          <li>Be prepared for technical implementation questions.</li>
+          <li>Know your technology stack and limitations.</li>
+          <li>Be ready to discuss impact and future scope.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="hw-alert reveal">
+      <h4>🔧 Hardware / IoT Project Guidelines</h4>
+      <p>Teams in Hardware/IoT projects are <strong>solely responsible for arranging all required hardware</strong>. The college will <strong>not</strong> provide project-specific components. Bring everything needed:</p>
+      <ul>
+        <li>Sensors, Microcontrollers, Modules &amp; Electronic components</li>
+        <li>Development boards, Cables, Connectors &amp; Tools</li>
+        <li>Power supplies and other project-specific equipment</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    document.getElementById('progressBar').style.width = pct + '%';
+  });
+  function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
+  function closeNav() { document.getElementById('navLinks').classList.remove('open'); }
+  function switchDay(day, btn) {
+    document.querySelectorAll('.timeline-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(day).classList.add('active');
+    btn.classList.add('active');
+    setTimeout(() => {
+      document.querySelectorAll('#' + day + ' .reveal:not(.visible)').forEach(el => observer.observe(el));
+    }, 50);
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
