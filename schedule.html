@@ -31,20 +31,74 @@
     }
     @keyframes gridScroll { 100% { background-position: 60px 60px; } }
     .progress-bar { position: fixed; top: 0; left: 0; height: 3px; z-index: 1001; background: linear-gradient(90deg,var(--neon),var(--neon2),var(--purple)); width: 0%; box-shadow: 0 0 10px var(--neon); }
-    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: .8rem 2rem; background: rgba(6,6,14,.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
-    .nav-brand { display: flex; align-items: center; gap: .5rem; font-family: 'Fira Code',monospace; font-weight: 700; font-size: 1.1rem; color: var(--neon); }
-    .nav-logo { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
-    .nav-links { display: flex; gap: 1.4rem; list-style: none; align-items: center; }
-    .nav-links a { color: var(--text-dim); font-size: .88rem; font-weight: 500; text-transform: uppercase; letter-spacing: .06em; }
-    .nav-links a:hover, .nav-links a.active { color: var(--neon); }
-    .nav-cta { padding: .5rem 1.2rem; border-radius: 6px; background: linear-gradient(135deg,var(--neon),var(--neon2)); color: #06060e !important; font-weight: 700; font-size: .85rem; }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .hamburger span { display: block; width: 26px; height: 2px; background: var(--neon); border-radius: 2px; }
+    /* ───────── NAVBAR ───────── */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .8rem 2rem;
+      background: rgba(6,6,14,.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow .3s;
+    }
+    .navbar.scrolled { box-shadow: 0 4px 30px rgba(0,255,170,.08); }
+    .nav-brand {
+      font-family: 'Fira Code', monospace;
+      font-weight: 700; font-size: 1.15rem;
+      color: var(--neon);
+      text-shadow: 0 0 10px rgba(0,255,170,.4);
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .nav-logo {
+      width: 34px; height: 34px; border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 10px rgba(0,255,170,.3);
+    }
+    .nav-links { display: flex; gap: 1.6rem; list-style: none; }
+    .nav-links a {
+      color: var(--text-dim); font-size: .88rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: .06em;
+      position: relative; padding-bottom: 2px;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 2px; background: var(--neon);
+      transition: width .3s; box-shadow: 0 0 6px var(--neon);
+    }
+    .nav-links a:hover { color: var(--neon); text-shadow: none; }
+    .nav-links a:hover::after { width: 100%; }
+    /* active page — underline always shown */
+    .nav-links a.active { color: var(--neon); }
+    .nav-links a.active::after { width: 100%; }
+    .nav-cta {
+      padding: .55rem 1.4rem; border-radius: 6px;
+      background: linear-gradient(135deg, var(--neon), var(--neon2));
+      color: #06060e !important; font-weight: 700; font-size: .88rem;
+      text-transform: uppercase; letter-spacing: .06em;
+      box-shadow: 0 0 20px rgba(0,255,170,.25);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .nav-cta:hover {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 0 30px rgba(0,255,170,.4);
+      color: #06060e !important; text-shadow: none;
+    }
+    /* nav-cta should NOT show the underline ::after */
+    .nav-links .nav-cta::after { display: none; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+    .hamburger span { display: block; width: 26px; height: 2px; background: var(--neon); border-radius: 2px; transition: .3s; }
     @media (max-width: 860px) {
       .hamburger { display: flex; }
-      .nav-links { position: fixed; top: 0; right: -100%; width: 260px; height: 100vh; flex-direction: column; gap: 0; align-items: flex-start; background: rgba(6,6,14,.97); backdrop-filter: blur(20px); padding: 5rem 2rem 2rem; border-left: 1px solid var(--border); transition: right .3s; }
+      .nav-links {
+        position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
+        flex-direction: column; gap: 0;
+        background: rgba(6,6,14,.97); backdrop-filter: blur(20px);
+        padding: 5rem 2rem 2rem; border-left: 1px solid var(--border);
+        transition: right .35s ease;
+      }
       .nav-links.open { right: 0; }
-      .nav-links a { padding: .8rem 0; border-bottom: 1px solid var(--border); width: 100%; }
+      .nav-links a { font-size: 1rem; padding: .8rem 0; border-bottom: 1px solid var(--border); }
+      .nav-links a::after { display: none; }
     }
     .page-hero { position: relative; z-index: 1; padding: 8rem 2rem 3rem; text-align: center; }
     .page-hero .badge { display: inline-flex; align-items: center; gap: .4rem; padding: .35rem .9rem; border-radius: 100px; border: 1px solid rgba(0,255,170,.3); background: rgba(0,255,170,.06); font-family: 'Fira Code',monospace; font-size: .78rem; color: var(--neon); margin-bottom: 1.2rem; }
@@ -138,15 +192,19 @@
 <div class="bg-grid"></div>
 <div class="progress-bar" id="progressBar"></div>
 
-<nav class="navbar">
+<nav class="navbar" id="navbar">
   <div class="nav-brand">
     <img src="logo.png" alt="UEC x SIH" class="nav-logo" />
     <span>SIH<span style="color:var(--neon2)">2026</span></span>
   </div>
   <ul class="nav-links" id="navLinks">
-    <li><a href="index.html" onclick="closeNav()">Guidelines</a></li>
-    <li><a href="schedule.html" class="active" onclick="closeNav()">Schedule</a></li>
-    <li><a href="index.html#cta" class="nav-cta" onclick="closeNav()">Register 🚀</a></li>
+    <li><a href="index.html#team" onclick="closeNav()">Team</a></li>
+    <li><a href="index.html#registration" onclick="closeNav()">Register</a></li>
+    <li><a href="index.html#problem" onclick="closeNav()">Problem</a></li>
+    <li><a href="index.html#evaluation" onclick="closeNav()">Evaluation</a></li>
+    <li><a href="index.html#rules" onclick="closeNav()">Rules</a></li>
+    <li><a href="schedule.html" class="active" onclick="closeNav()">📅 Schedule</a></li>
+    <li><a href="index.html#cta" class="nav-cta" onclick="closeNav()">Register Now 🚀</a></li>
   </ul>
   <div class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
 </nav>
@@ -446,6 +504,7 @@
   window.addEventListener('scroll', () => {
     const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
     document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
   });
   function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
   function closeNav() { document.getElementById('navLinks').classList.remove('open'); }
