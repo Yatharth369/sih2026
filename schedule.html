@@ -181,6 +181,124 @@
     .hw-alert ul { list-style: none; padding: 0; margin-top: .7rem; }
     .hw-alert li { position: relative; padding: .25rem 0 .25rem 1.3rem; }
     .hw-alert li::before { content: '▹'; position: absolute; left: 0; color: var(--orange); }
+    /* ANNOUNCEMENT BANNER */
+    .update-banner {
+      max-width: 900px; margin: 0 auto 2.5rem; padding: 1.4rem 1.8rem;
+      background: linear-gradient(135deg, rgba(0,255,170,.08), rgba(0,212,255,.05));
+      border: 1px solid rgba(0,255,170,.3); border-radius: 14px;
+      box-shadow: 0 0 25px rgba(0,255,170,.1); position: relative; overflow: hidden;
+    }
+    .update-banner::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--neon), var(--neon2), var(--purple));
+    }
+    .update-banner .banner-tag {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-family: 'Fira Code', monospace; font-size: .75rem; font-weight: 700;
+      color: #06060e; background: var(--neon); padding: .25rem .7rem;
+      border-radius: 4px; text-transform: uppercase; margin-bottom: .8rem;
+    }
+    .update-banner h3 {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 800;
+      color: #fff; margin-bottom: .5rem;
+    }
+    .update-banner p { color: var(--text-dim); font-size: .9rem; line-height: 1.6; margin-bottom: .8rem; }
+    .update-banner .banner-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: .8rem; margin-top: 1rem;
+    }
+    .update-banner .banner-pill {
+      background: var(--bg-card2); border: 1px solid var(--border);
+      border-radius: 8px; padding: .7rem 1rem; font-size: .85rem;
+    }
+    .update-banner .banner-pill strong { color: var(--neon); display: block; font-size: .9rem; margin-bottom: .2rem; }
+
+    /* TEAMS DIRECTORY */
+    .teams-directory {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.8rem; margin-bottom: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,.3);
+    }
+    .teams-header {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem; margin-bottom: 1.4rem;
+    }
+    .teams-header h3 {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 800;
+      color: var(--neon); display: flex; align-items: center; gap: .5rem;
+    }
+    .search-wrap {
+      position: relative; flex: 1; max-width: 320px; min-width: 220px;
+    }
+    .search-wrap input {
+      width: 100%; padding: .6rem 1rem .6rem 2.4rem; border-radius: 8px;
+      background: var(--bg-card2); border: 1px solid var(--border);
+      color: var(--text); font-family: 'Inter', sans-serif; font-size: .85rem;
+      outline: none; transition: border-color .3s, box-shadow .3s;
+    }
+    .search-wrap input:focus {
+      border-color: var(--neon); box-shadow: 0 0 12px rgba(0,255,170,.25);
+    }
+    .search-wrap .search-icon {
+      position: absolute; left: .8rem; top: 50%; transform: translateY(-50%);
+      font-size: .85rem; color: var(--text-dim); pointer-events: none;
+    }
+    .teams-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: .75rem; max-height: 480px; overflow-y: auto; padding-right: .4rem;
+    }
+    .teams-grid::-webkit-scrollbar { width: 6px; }
+    .teams-grid::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    .team-card {
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--bg-card2); border: 1px solid var(--border);
+      border-radius: 8px; padding: .65rem .9rem; transition: all .25s;
+    }
+    .team-card:hover {
+      border-color: var(--neon); transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,255,170,.15);
+    }
+    .team-num {
+      font-family: 'Fira Code', monospace; font-size: .8rem; font-weight: 700;
+      color: #06060e; background: var(--neon); padding: .2rem .5rem;
+      border-radius: 4px;
+    }
+    .team-name {
+      font-weight: 600; font-size: .88rem; color: var(--text);
+      flex: 1; margin: 0 .8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .team-badge {
+      font-family: 'Fira Code', monospace; font-size: .7rem;
+      color: var(--neon2); background: rgba(0,212,255,.08);
+      border: 1px solid rgba(0,212,255,.2); padding: .15rem .45rem;
+      border-radius: 4px;
+    }
+
+    /* PREPARATION CHECKLIST */
+    .prep-box {
+      background: linear-gradient(135deg, rgba(168,85,247,.08), rgba(0,212,255,.05));
+      border: 1px solid rgba(168,85,247,.3); border-radius: 12px;
+      padding: 1.5rem; margin-top: 1.5rem; position: relative; overflow: hidden;
+    }
+    .prep-box::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--purple), var(--neon2));
+    }
+    .prep-box h4 {
+      color: var(--purple); font-size: 1.05rem; font-weight: 700;
+      margin-bottom: .8rem; display: flex; align-items: center; gap: .5rem;
+    }
+    .prep-checklist {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: .7rem; margin-top: .8rem;
+    }
+    .prep-item {
+      display: flex; align-items: center; gap: .6rem;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 8px; padding: .65rem .9rem; font-size: .85rem; color: var(--text);
+    }
+    .prep-item .check-icon { color: var(--neon); font-weight: bold; font-size: 1rem; }
+
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s, transform .6s; }
     .reveal.visible { opacity: 1; transform: none; }
     ::-webkit-scrollbar { width: 8px; }
@@ -212,30 +330,107 @@
 <div class="page-hero reveal">
   <div class="badge">📅 Official Event Schedule</div>
   <h1>UEC × SIH 2026<br/>Hackathon Schedule</h1>
-  <p>10–11 September 2026 &nbsp;•&nbsp; TPO Office / Conference Room</p>
+  <p>10–11 September 2026 &nbsp;•&nbsp; TPO Office / Conference Room &nbsp;•&nbsp; Ujjain Engineering College</p>
   <a href="index.html" class="back-btn">← Back to Guidelines</a>
 </div>
 
+<!-- ════════ IMPORTANT NOTICE BANNER ════════ -->
+<div style="padding: 0 2rem;">
+  <div class="update-banner reveal">
+    <div class="banner-tag">📢 Important Event Update</div>
+    <h3>Hackathon Divided Across TWO DAYS (Two Groups)</h3>
+    <p>
+      Due to the large number of participating teams, the Internal SIH Hackathon is organized across <strong>TWO DAYS</strong> to ensure smooth management and fair evaluation for every team. Please check your assigned group below and ensure your entire team reports on time!
+    </p>
+    <div class="banner-grid">
+      <div class="banner-pill">
+        <strong>🔹 GROUP 1 — 10 SEPT</strong>
+        <span>Teams 01 to 25 • Competing Day 1</span>
+      </div>
+      <div class="banner-pill">
+        <strong>🔹 GROUP 2 — 11 SEPT</strong>
+        <span>Group 2 teams • Details releasing soon</span>
+      </div>
+      <div class="banner-pill">
+        <strong>⏰ REPORTING TIME</strong>
+        <span>9:30 AM SHARP on your day</span>
+      </div>
+      <div class="banner-pill">
+        <strong>🕒 EVALUATION TIME</strong>
+        <span>3:00 PM – 5:30 PM (Be ready at 3:00 PM)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DAY TABS -->
 <div class="day-tabs reveal">
-  <button class="day-tab active" onclick="switchDay('day1',this)">🗓️ Day 1 — 10 Sept</button>
-  <button class="day-tab" onclick="switchDay('day2',this)">🗓️ Day 2 — 11 Sept</button>
+  <button class="day-tab active" onclick="switchDay('day1',this)">🗓️ Day 1 (10 Sept) — Group 1</button>
+  <button class="day-tab" onclick="switchDay('day2',this)">🗓️ Day 2 (11 Sept) — Group 2</button>
 </div>
 
 <div class="content">
 
-  <!-- DAY 1 -->
+  <!-- ─────────────── DAY 1 ─────────────── -->
   <div class="timeline-section active" id="day1">
     <div class="day-header reveal">
-      <div class="day-num">DAY 01</div>
+      <div class="day-num">DAY 01 &nbsp;•&nbsp; GROUP 1</div>
       <h2>10 September 2026</h2>
-      <div class="date-badge">📍 TPO Office / Conference Room</div>
+      <div class="date-badge">📍 TPO Office / Conference Room &nbsp;•&nbsp; ⏰ Report by 9:30 AM SHARP</div>
     </div>
+
+    <!-- Group 1 Teams Directory -->
+    <div class="teams-directory reveal">
+      <div class="teams-header">
+        <h3>👥 Group 1 Participating Teams <span style="font-size:.85rem;color:var(--text-dim);font-weight:500;">(25 Teams)</span></h3>
+        <div class="search-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="teamSearch" placeholder="Search team name or number..." onkeyup="filterTeams()" />
+        </div>
+      </div>
+
+      <div class="teams-grid" id="teamsGrid">
+        <div class="team-card"><span class="team-num">01</span><span class="team-name">Innov8</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">02</span><span class="team-name">ByteForge</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">03</span><span class="team-name">Team Echo</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">04</span><span class="team-name">Synthetic Sapiens</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">05</span><span class="team-name">Quantum Fusion</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">06</span><span class="team-name">Inventra</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">07</span><span class="team-name">Veda Bytes</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">08</span><span class="team-name">ARISE</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">09</span><span class="team-name">Logic Squad</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">10</span><span class="team-name">Python Pandas</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">11</span><span class="team-name">Tech Reborn</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">12</span><span class="team-name">Dooms Tech</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">13</span><span class="team-name">THE INNOVATORS</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">14</span><span class="team-name">The Invincible</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">15</span><span class="team-name">NEXORA</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">16</span><span class="team-name">Code Crafter 05</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">17</span><span class="team-name">THE DOMINATORS</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">18</span><span class="team-name">Hexathons</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">19</span><span class="team-name">INFINITY</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">20</span><span class="team-name">Team Oasis</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">21</span><span class="team-name">Syntax Squad</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">22</span><span class="team-name">HealNex</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">23</span><span class="team-name">LOGICLABS</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">24</span><span class="team-name">DECODERS</span><span class="team-badge">Group 1</span></div>
+        <div class="team-card"><span class="team-num">25</span><span class="team-name">Tech Titans</span><span class="team-badge">Group 1</span></div>
+      </div>
+      <div id="noTeamsFound" style="display:none;padding:1.5rem;text-align:center;color:var(--text-dim);font-size:.9rem;">
+        ❌ No matching teams found. Try searching by Team Number (e.g. "05") or Name.
+      </div>
+      <p style="margin-top:1rem;font-size:.82rem;color:var(--text-dim);border-top:1px solid var(--border);padding-top:.8rem;">
+        ⚠️ <strong>Note:</strong> All 25 teams listed above must be present with their full team on <strong>10 September at 9:30 AM SHARP</strong>.
+      </p>
+    </div>
+
+    <!-- Day 1 Timeline -->
     <div class="timeline">
       <div class="timeline-item reveal">
         <div class="time-card work">
           <div class="time-badge">⏰ 9:30 AM – 10:30 AM</div>
           <h3>Reporting, Attendance &amp; Verification</h3>
-          <p>All participants are required to report to the <strong>TPO Office by 9:30 AM</strong>.</p>
+          <p>All Group 1 participants are required to report to the <strong>TPO Office by 9:30 AM SHARP</strong>.</p>
           <ul>
             <li>Attendance of all participants will be recorded.</li>
             <li>Team and participant verification will be completed.</li>
@@ -252,172 +447,198 @@
           </div>
         </div>
       </div>
+
       <div class="timeline-item reveal">
         <div class="time-card work">
           <div class="time-badge">⏰ 10:30 AM – 1:30 PM</div>
           <h3>Project Development &amp; Hackathon Work</h3>
-          <p>Teams begin working on their projects. Venue: <strong>TPO Office / Conference Room</strong>.</p>
+          <p>Teams work on their projects in the <strong>TPO Office / Conference Room</strong>.</p>
           <ul>
             <li>Problem analysis and solution planning</li>
-            <li>Coding and software development</li>
-            <li>Research and technical development</li>
-            <li>Hardware/IoT development and integration</li>
-            <li>Prototype development, testing and debugging</li>
-            <li>Documentation and project preparation</li>
+            <li>Coding, software development &amp; MVP creation</li>
+            <li>Research, technical architecture and documentation</li>
+            <li>Hardware / IoT development and sensor integration</li>
+            <li>Testing, debugging and prototype validation</li>
           </ul>
         </div>
       </div>
+
       <div class="timeline-item break reveal">
         <div class="time-card break">
           <div class="time-badge">☕ 1:30 PM – 2:00 PM</div>
           <h3>Refreshment Break</h3>
           <ul>
             <li>Refreshments will be provided by the college.</li>
-            <li>Participants may use this period for a short break.</li>
+            <li>Participants may use this period for a short break and recharge.</li>
           </ul>
         </div>
       </div>
+
       <div class="timeline-item reveal">
         <div class="time-card work">
-          <div class="time-badge">⏰ 2:00 PM – 4:30 PM</div>
-          <h3>Project Development &amp; Hackathon Work</h3>
-          <p>Teams resume project work. Focus on:</p>
+          <div class="time-badge">⏰ 2:00 PM – 3:00 PM</div>
+          <h3>Final Polish &amp; Evaluation Preparation</h3>
+          <p>Teams finalize their implementations and get ready for judges. Focus on:</p>
           <ul>
-            <li>Continuing implementation and improving the solution</li>
-            <li>Integrating hardware/software components</li>
-            <li>Testing the project and fixing technical issues</li>
-            <li>Preparing for Evaluation Round 1</li>
+            <li>Finalizing working MVP and testing demos</li>
+            <li>Reviewing PPT / Presentation slides and team speaking points</li>
+            <li>Arranging source code, repositories, and necessary files</li>
+            <li>Ensuring laptop battery, chargers, and mobile hotspots are operational</li>
           </ul>
+          <p style="margin-top:.8rem;padding:.7rem;background:rgba(250,204,21,.07);border-radius:8px;border:1px solid rgba(250,204,21,.25);color:var(--yellow);font-size:.85rem;font-weight:700;">
+            ⚡ ALL TEAMS MUST BE READY FOR EVALUATION AT 3:00 PM SHARP!
+          </p>
         </div>
       </div>
+
       <div class="timeline-item eval reveal">
         <div class="time-card eval">
-          <div class="time-badge">🔍 4:30 PM – 5:30 PM</div>
-          <h3>Evaluation Round 1 – Progress Evaluation</h3>
-          <p>First evaluation by faculty members/mentors. Each team should explain:</p>
+          <div class="time-badge">🔍 3:00 PM – 5:30 PM</div>
+          <h3>Evaluation Round — Group 1</h3>
+          <p>Official evaluation by faculty mentors and judging panel. All teams will present:</p>
           <ul>
-            <li>Selected problem statement and the problem being addressed</li>
-            <li>Proposed solution and work completed so far</li>
-            <li>Current implementation and prototype/demo</li>
-            <li>Technical challenges faced and planned next steps</li>
+            <li><strong>Problem Understanding:</strong> Core problem addressed &amp; target beneficiaries</li>
+            <li><strong>Working MVP / Prototype Demo:</strong> Live functional demonstration</li>
+            <li><strong>PPT / Presentation:</strong> Architecture, technology stack &amp; workflow</li>
+            <li><strong>Innovation &amp; Feasibility:</strong> Practical feasibility, scalability and uniqueness</li>
+            <li><strong>Technical Q&amp;A:</strong> Answer questions regarding source code and technical choices</li>
           </ul>
         </div>
       </div>
+
       <div class="timeline-item closing reveal">
         <div class="time-card closing">
           <div class="time-badge">🏁 5:30 PM</div>
           <h3>Day 1 Closing, Progress Reporting &amp; Checkout</h3>
-          <p>Day 1 officially concludes at <strong>5:30 PM</strong>. Before leaving:</p>
+          <p>Day 1 activities officially conclude at <strong>5:30 PM</strong>. Before leaving:</p>
           <ul>
-            <li>Report work completed and communicate current project status.</li>
-            <li>Mention pending tasks for Day 2.</li>
-            <li>Ensure workspace is organized and cleared.</li>
-            <li>Complete required checkout formalities.</li>
+            <li>Report completed work and submit project links if required.</li>
+            <li>Ensure workspace and tables are cleared and neat.</li>
+            <li>Complete checkout attendance and formalities with the organizing team.</li>
           </ul>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- DAY 2 -->
+  <!-- ─────────────── DAY 2 ─────────────── -->
   <div class="timeline-section" id="day2">
     <div class="day-header reveal">
-      <div class="day-num">DAY 02</div>
+      <div class="day-num">DAY 02 &nbsp;•&nbsp; GROUP 2</div>
       <h2>11 September 2026</h2>
-      <div class="date-badge">📍 TPO Office / Conference Room</div>
+      <div class="date-badge">📍 TPO Office / Conference Room &nbsp;•&nbsp; ⏰ Report by 9:30 AM SHARP</div>
     </div>
+
+    <!-- Group 2 Announcement Card -->
+    <div style="background:var(--bg-card);border:1px solid rgba(0,212,255,.3);border-radius:14px;padding:2rem;margin-bottom:2.5rem;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.3);" class="reveal">
+      <div style="font-size:2.4rem;margin-bottom:.8rem;">⏳</div>
+      <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;color:var(--neon2);margin-bottom:.6rem;">Group 2 Team Details Releasing Shortly</h3>
+      <p style="color:var(--text-dim);font-size:.92rem;max-width:580px;margin:0 auto 1.2rem;line-height:1.6;">
+        The team allocation list for <strong>Group 2 (competing on 11 September 2026)</strong> will be shared on our official WhatsApp Group as soon as finalized by the organizing committee.
+      </p>
+      <div style="display:inline-flex;align-items:center;gap:.6rem;background:rgba(0,255,170,.08);border:1px solid rgba(0,255,170,.25);padding:.6rem 1.2rem;border-radius:8px;color:var(--neon);font-size:.88rem;font-weight:600;">
+        ⏰ All Group 2 teams must report by 9:30 AM SHARP on 11 September
+      </div>
+    </div>
+
+    <!-- Day 2 Timeline -->
     <div class="timeline">
       <div class="timeline-item reveal">
         <div class="time-card work">
-          <div class="time-badge">⏰ 10:00 AM – 10:30 AM</div>
+          <div class="time-badge">⏰ 9:30 AM – 10:30 AM</div>
           <h3>Reporting, Attendance &amp; Verification</h3>
-          <p>All participants must report by <strong>10:00 AM</strong>.</p>
+          <p>All Group 2 participants are required to report to the <strong>TPO Office by 9:30 AM SHARP</strong>.</p>
           <ul>
-            <li>Attendance will be recorded.</li>
-            <li>Team participation will be verified.</li>
-            <li>Any remaining administrative formalities will be completed.</li>
+            <li>Attendance of all participants will be recorded.</li>
+            <li>Team and participant verification will be completed.</li>
+            <li>A <strong>Verification Form</strong> will be provided to each team.</li>
+            <li>The form must include: <strong>Problem Statement</strong>, <strong>Problem Statement Description</strong> &amp; <strong>Problem Statement Code/Number</strong>.</li>
           </ul>
+          <div style="margin-top:.9rem;padding:.9rem 1rem;background:rgba(0,212,255,.05);border-radius:8px;border:1px solid rgba(0,212,255,.2);">
+            <p style="color:var(--neon2);font-size:.85rem;font-weight:600;margin-bottom:.5rem;">⚠️ Before arriving at the college:</p>
+            <p style="color:var(--text-dim);font-size:.84rem;">Visit the official SIH portal and check the Problem Statement you have chosen along with its corresponding Code/Number. This is only to <strong style="color:var(--text);">confirm and note down the correct code</strong>. No separate verification or approval is required on the SIH portal.</p>
+          </div>
+          <div style="margin-top:.7rem;padding:.9rem 1rem;background:rgba(0,255,170,.04);border-radius:8px;border:1px solid rgba(0,255,170,.15);">
+            <p style="color:var(--neon);font-size:.85rem;font-weight:600;margin-bottom:.5rem;">✅ After arriving at the college:</p>
+            <p style="color:var(--text-dim);font-size:.84rem;">Enter the selected <strong style="color:var(--text);">Problem Statement, its Description, and the corresponding Code/Number</strong> in the Verification Form provided by the organizing team.</p>
+          </div>
         </div>
       </div>
+
       <div class="timeline-item reveal">
         <div class="time-card work">
-          <div class="time-badge">⏰ 10:30 AM – 1:00 PM</div>
+          <div class="time-badge">⏰ 10:30 AM – 1:30 PM</div>
           <h3>Project Development &amp; Hackathon Work</h3>
-          <p>Teams continue working. Focus on:</p>
+          <p>Group 2 teams work on their projects in the <strong>TPO Office / Conference Room</strong>.</p>
           <ul>
-            <li>Completing project development and finalizing implementation</li>
-            <li>Testing, debugging and improving the prototype</li>
-            <li>Resolving technical issues</li>
-            <li>Preparing the solution for Evaluation Round 2</li>
+            <li>Problem analysis and solution planning</li>
+            <li>Coding, software development &amp; MVP creation</li>
+            <li>Research, technical architecture and documentation</li>
+            <li>Hardware / IoT development and sensor integration</li>
+            <li>Testing, debugging and prototype validation</li>
           </ul>
         </div>
       </div>
+
       <div class="timeline-item break reveal">
         <div class="time-card break">
-          <div class="time-badge">☕ 1:00 PM – 1:30 PM</div>
+          <div class="time-badge">☕ 1:30 PM – 2:00 PM</div>
           <h3>Refreshment Break</h3>
           <ul>
             <li>Refreshments will be provided by the college.</li>
-            <li>Participants may use this time for a short break.</li>
+            <li>Participants may use this period for a short break and recharge.</li>
           </ul>
         </div>
       </div>
+
       <div class="timeline-item reveal">
         <div class="time-card work">
-          <div class="time-badge">⏰ 1:30 PM – 2:30 PM</div>
-          <h3>Final Project Preparation</h3>
-          <p>Teams prepare for Evaluation Round 2:</p>
+          <div class="time-badge">⏰ 2:00 PM – 3:00 PM</div>
+          <h3>Final Polish &amp; Evaluation Preparation</h3>
+          <p>Teams finalize their implementations and get ready for judges. Focus on:</p>
           <ul>
-            <li>Completing pending development and final testing</li>
-            <li>Prototype/demo preparation and documentation</li>
-            <li>Reviewing technical details and preparing for judge questions</li>
+            <li>Finalizing working MVP and testing demos</li>
+            <li>Reviewing PPT / Presentation slides and team speaking points</li>
+            <li>Arranging source code, repositories, and necessary files</li>
+            <li>Ensuring laptop battery, chargers, and mobile hotspots are operational</li>
           </ul>
+          <p style="margin-top:.8rem;padding:.7rem;background:rgba(250,204,21,.07);border-radius:8px;border:1px solid rgba(250,204,21,.25);color:var(--yellow);font-size:.85rem;font-weight:700;">
+            ⚡ ALL TEAMS MUST BE READY FOR EVALUATION AT 3:00 PM SHARP!
+          </p>
         </div>
       </div>
+
       <div class="timeline-item eval reveal">
         <div class="time-card eval">
-          <div class="time-badge">🔍 2:30 PM – 4:30 PM</div>
-          <h3>Evaluation Round 2 &amp; Shortlisting</h3>
-          <p>Teams evaluated by the judging panel on:</p>
+          <div class="time-badge">🔍 3:00 PM – 5:30 PM</div>
+          <h3>Evaluation Round — Group 2</h3>
+          <p>Official evaluation by faculty mentors and judging panel. All teams will present:</p>
           <ul>
-            <li>Understanding of the problem statement</li>
-            <li>Quality of solution and technical implementation</li>
-            <li>Innovation, uniqueness and functionality</li>
-            <li>Feasibility, practical impact and overall execution</li>
+            <li><strong>Problem Understanding:</strong> Core problem addressed &amp; target beneficiaries</li>
+            <li><strong>Working MVP / Prototype Demo:</strong> Live functional demonstration</li>
+            <li><strong>PPT / Presentation:</strong> Architecture, technology stack &amp; workflow</li>
+            <li><strong>Innovation &amp; Feasibility:</strong> Practical feasibility, scalability and uniqueness</li>
+            <li><strong>Technical Q&amp;A:</strong> Answer questions regarding source code and technical choices</li>
           </ul>
-          <p style="margin-top:.8rem;padding:.7rem;background:rgba(168,85,247,.06);border-radius:8px;border:1px solid rgba(168,85,247,.2);color:var(--purple);font-size:.84rem;font-weight:600;">🏆 ~5–7 teams will be shortlisted for the Final Presentation Round.</p>
         </div>
       </div>
-      <div class="timeline-item final reveal">
-        <div class="time-card final">
-          <div class="time-badge">🎤 4:30 PM – 5:10 PM</div>
-          <h3>Final Presentation &amp; Q&amp;A Round</h3>
-          <p>Shortlisted teams present to the judging panel:</p>
-          <ul>
-            <li>Problem Statement and Problem Understanding</li>
-            <li>Proposed Solution and Technology &amp; Implementation</li>
-            <li>Working Prototype/Demo</li>
-            <li>Innovation, Uniqueness, Impact &amp; Future Scope</li>
-          </ul>
-          <p style="margin-top:.6rem;color:var(--text-dim);font-size:.85rem;">Judges may ask about architecture, scalability, real-world applications, and limitations.</p>
-        </div>
-      </div>
+
       <div class="timeline-item closing reveal">
         <div class="time-card closing">
-          <div class="time-badge">🏆 5:10 PM – 5:30 PM</div>
-          <h3>Final Judging &amp; Winner Announcement</h3>
+          <div class="time-badge">🏆 5:30 PM</div>
+          <h3>Day 2 Closing, Results &amp; Checkout</h3>
+          <p>Hackathon activities conclude at <strong>5:30 PM</strong>. Followed by:</p>
           <ul>
-            <li>Judging panel will finalize the evaluation.</li>
-            <li>Scores/results will be consolidated.</li>
-            <li><strong>Final winners will be announced.</strong></li>
-            <li>Hackathon officially concludes at <strong>5:30 PM</strong>.</li>
+            <li>Scores and evaluations from both days consolidated.</li>
+            <li><strong>Official results &amp; shortlisted SIH teams announced!</strong></li>
+            <li>Workspace cleared and checkout formalities completed.</li>
           </ul>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- AT A GLANCE -->
+  <!-- ─────────────── AT A GLANCE ─────────────── -->
   <div class="glance-section reveal">
     <div class="section-header">
       <span class="section-number">📊</span>
@@ -425,35 +646,61 @@
     </div>
     <div style="overflow-x:auto;border-radius:12px;border:1px solid var(--border);">
       <table class="glance-table">
-        <thead><tr><th>Day</th><th>Time</th><th>Activity</th></tr></thead>
+        <thead><tr><th>Day / Group</th><th>Time</th><th>Activity</th></tr></thead>
         <tbody>
-          <tr class="day-row"><td colspan="3">📅 Day 1 — 10 September 2026</td></tr>
-          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;">9:30 – 10:30 AM</td><td>Reporting, Attendance &amp; Verification</td></tr>
+          <tr class="day-row"><td colspan="3">📅 DAY 1 — 10 SEPTEMBER 2026 (GROUP 1 TEAMS 01–25)</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;">9:30 – 10:30 AM</td><td>Reporting, Attendance &amp; Verification (TPO Office)</td></tr>
           <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;">10:30 AM – 1:30 PM</td><td>Project Development &amp; Hackathon Work</td></tr>
           <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;color:var(--orange);">1:30 – 2:00 PM</td><td style="color:var(--orange);">☕ Refreshment Break</td></tr>
-          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;">2:00 – 4:30 PM</td><td>Project Development &amp; Hackathon Work</td></tr>
-          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;color:var(--purple);">4:30 – 5:30 PM</td><td style="color:var(--purple);">🔍 Evaluation Round 1 – Progress Evaluation</td></tr>
-          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;color:var(--red);">5:30 PM</td><td style="color:var(--red);">🏁 Day 1 Closing &amp; Checkout</td></tr>
-          <tr class="day-row"><td colspan="3">📅 Day 2 — 11 September 2026</td></tr>
-          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;">10:00 – 10:30 AM</td><td>Reporting, Attendance &amp; Verification</td></tr>
-          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;">10:30 AM – 1:00 PM</td><td>Project Development &amp; Hackathon Work</td></tr>
-          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;color:var(--orange);">1:00 – 1:30 PM</td><td style="color:var(--orange);">☕ Refreshment Break</td></tr>
-          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;">1:30 – 2:30 PM</td><td>Final Project Preparation</td></tr>
-          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;color:var(--purple);">2:30 – 4:30 PM</td><td style="color:var(--purple);">🔍 Evaluation Round 2 &amp; Shortlisting</td></tr>
-          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;color:var(--yellow);">4:30 – 5:10 PM</td><td style="color:var(--yellow);">🎤 Final Presentation &amp; Q&amp;A</td></tr>
-          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;color:var(--neon);">5:10 – 5:30 PM</td><td style="color:var(--neon);">🏆 Final Judging &amp; Winner Announcement</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;">2:00 – 3:00 PM</td><td>Final Polish &amp; Presentation Prep</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;color:var(--purple);font-weight:700;">3:00 – 5:30 PM</td><td style="color:var(--purple);font-weight:700;">🔍 Evaluation Round (Ready at 3:00 PM SHARP)</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;color:var(--red);">5:30 PM</td><td style="color:var(--red);">🏁 Day 1 Wrap-up &amp; Checkout</td></tr>
+
+          <tr class="day-row"><td colspan="3">📅 DAY 2 — 11 SEPTEMBER 2026 (GROUP 2 TEAMS)</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;">9:30 – 10:30 AM</td><td>Reporting, Attendance &amp; Verification (TPO Office)</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;">10:30 AM – 1:30 PM</td><td>Project Development &amp; Hackathon Work</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;color:var(--orange);">1:30 – 2:00 PM</td><td style="color:var(--orange);">☕ Refreshment Break</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;">2:00 – 3:00 PM</td><td>Final Polish &amp; Presentation Prep</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;color:var(--purple);font-weight:700;">3:00 – 5:30 PM</td><td style="color:var(--purple);font-weight:700;">🔍 Evaluation Round (Ready at 3:00 PM SHARP)</td></tr>
+          <tr><td></td><td style="font-family:'Fira Code',monospace;font-size:.82rem;white-space:nowrap;color:var(--neon);font-weight:700;">5:30 PM</td><td style="color:var(--neon);font-weight:700;">🏆 Day 2 Wrap-up, Results &amp; Winner Announcement</td></tr>
         </tbody>
       </table>
     </div>
   </div>
 
-  <!-- GUIDELINES -->
+  <!-- ─────────────── GUIDELINES & PREPARATION ─────────────── -->
   <div class="guidelines-section">
     <div class="section-header reveal">
-      <span class="section-number">📌</span>
-      <h2>Important Participant Guidelines</h2>
+      <span class="section-number">💻</span>
+      <h2>Prepare Accordingly</h2>
     </div>
-    <div class="guide-grid">
+
+    <!-- Preparation Checklist from WhatsApp -->
+    <div class="prep-box reveal">
+      <h4>📋 Essential Evaluation Checklist — Be Ready by 3:00 PM</h4>
+      <p style="color:var(--text-dim);font-size:.88rem;">Make sure your team has the following items completely prepared before evaluation begins:</p>
+      <div class="prep-checklist">
+        <div class="prep-item"><span class="check-icon">✓</span> Working MVP (Minimum Viable Product)</div>
+        <div class="prep-item"><span class="check-icon">✓</span> PPT / Presentation Slides</div>
+        <div class="prep-item"><span class="check-icon">✓</span> Live Project Demo</div>
+        <div class="prep-item"><span class="check-icon">✓</span> Source Code &amp; Required Files</div>
+        <div class="prep-item"><span class="check-icon">✓</span> Complete Understanding of Solution</div>
+        <div class="prep-item"><span class="check-icon">✓</span> Laptops, Chargers &amp; Cables</div>
+      </div>
+    </div>
+
+    <!-- Technical Note from WhatsApp -->
+    <div style="background:rgba(250,204,21,.05);border:1px solid rgba(250,204,21,.3);border-radius:12px;padding:1.4rem;margin-top:1.2rem;" class="reveal">
+      <h4 style="color:var(--yellow);font-size:1rem;margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem;">
+        ⚠️ Technical Note — Internet &amp; Power
+      </h4>
+      <p style="color:var(--text-dim);font-size:.88rem;line-height:1.7;">
+        Network connectivity on campus may vary. Every team is strongly advised to <strong>keep a personal mobile hotspot / backup internet connection ready</strong>. Also, please <strong>arrange an extension board / power strip</strong> for your team's laptops and devices.
+      </p>
+    </div>
+
+    <!-- Guidelines Grid -->
+    <div class="guide-grid" style="margin-top:1.5rem;">
       <div class="guide-card reveal">
         <div class="guide-icon">📋</div>
         <h4>Before the Hackathon</h4>
@@ -461,35 +708,36 @@
           <li>Verify your SIH Problem Statement and Code/Number in advance.</li>
           <li>Keep all required documents ready.</li>
           <li>Ensure every team member understands the selected problem.</li>
-          <li>Arrive prepared to begin work immediately after verification.</li>
+          <li>Arrive prepared to begin work immediately at 9:30 AM SHARP.</li>
         </ul>
       </div>
       <div class="guide-card reveal">
         <div class="guide-icon">⏱️</div>
         <h4>During the Hackathon</h4>
         <ul>
-          <li>Report strictly according to scheduled timings.</li>
+          <li>Report strictly at 9:30 AM SHARP on your scheduled day.</li>
           <li>Maintain continuous progress throughout the event.</li>
-          <li>Keep project ready for evaluation at all times.</li>
-          <li>Follow all instructions from faculty, mentors, and judges.</li>
-          <li>Maintain professional conduct throughout.</li>
+          <li>Have your MVP ready for evaluation at 3:00 PM SHARP.</li>
+          <li>Follow instructions from faculty, mentors, and judges.</li>
+          <li>Maintain professional conduct and team collaboration.</li>
         </ul>
       </div>
       <div class="guide-card reveal">
         <div class="guide-icon">🎤</div>
-        <h4>Final Presentation</h4>
+        <h4>Presentation Tips</h4>
         <ul>
-          <li>Have your PPT and working prototype/demo ready.</li>
-          <li>Every member must know the problem &amp; solution.</li>
-          <li>Be prepared for technical implementation questions.</li>
-          <li>Know your technology stack and limitations.</li>
-          <li>Be ready to discuss impact and future scope.</li>
+          <li>Have your PPT and working demo loaded and tested.</li>
+          <li>Every member should be ready to speak and answer questions.</li>
+          <li>Clearly highlight problem impact, innovation, and architecture.</li>
+          <li>Be prepared to explain technical implementation and code.</li>
         </ul>
       </div>
     </div>
+
+    <!-- Hardware Alert -->
     <div class="hw-alert reveal">
       <h4>🔧 Hardware / IoT Project Guidelines</h4>
-      <p>Teams in Hardware/IoT projects are <strong>solely responsible for arranging all required hardware</strong>. The college will <strong>not</strong> provide project-specific components. Bring everything needed:</p>
+      <p>Teams participating in Hardware/IoT projects are <strong>solely responsible for arranging all required hardware</strong> from their side. The college will <strong>not</strong> provide project-specific components. Bring everything needed:</p>
       <ul>
         <li>Sensors, Microcontrollers, Modules &amp; Electronic components</li>
         <li>Development boards, Cables, Connectors &amp; Tools</li>
@@ -501,13 +749,18 @@
 </div>
 
 <script>
+  // Progress bar & navbar shadow
   window.addEventListener('scroll', () => {
     const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
     document.getElementById('progressBar').style.width = pct + '%';
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
   });
+
+  // Mobile nav
   function toggleNav() { document.getElementById('navLinks').classList.toggle('open'); }
   function closeNav() { document.getElementById('navLinks').classList.remove('open'); }
+
+  // Day tabs
   function switchDay(day, btn) {
     document.querySelectorAll('.timeline-section').forEach(s => s.classList.remove('active'));
     document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
@@ -517,8 +770,38 @@
       document.querySelectorAll('#' + day + ' .reveal:not(.visible)').forEach(el => observer.observe(el));
     }, 50);
   }
+
+  // Team search filter
+  function filterTeams() {
+    const query = document.getElementById('teamSearch').value.toLowerCase().trim();
+    const cards = document.querySelectorAll('#teamsGrid .team-card');
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const num = card.querySelector('.team-num').textContent.toLowerCase();
+      const name = card.querySelector('.team-name').textContent.toLowerCase();
+      if (num.includes(query) || name.includes(query)) {
+        card.style.display = 'flex';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    const noResult = document.getElementById('noTeamsFound');
+    if (noResult) {
+      noResult.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+  }
+
+  // Scroll reveal observer
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
